@@ -38,11 +38,12 @@ require'mini.misc'.setup{}        -- misc functions (put, put_text)
 require'mini.comment'.setup{}     -- comment stuff
 require'mini.completion'.setup{}  -- LSP and fallback completions
 require'mini.statusline'.setup{}  -- simple statusline
+require'mini.starter'.setup{}     -- starter screen
 require'mini.surround'.setup{}    -- surround stuff
 require'mini.tabline'.setup{}     -- tabline/bufferline
 
 -- Git signs
-require'gitsigns'.setup{}
+require'gitsigns'.setup{current_line_blame=true}
 
 -- LSP configs
 require'lspconfig'.gopls.setup{}
@@ -124,12 +125,13 @@ map.nnoremap('<leader>fh', '<cmd>Telescope help_tags<cr>')
 -- Git signs
 map.nnoremap('<leader>gb', '<cmd>Gitsigns toggle_current_line_blame<cr>')
 
+
 -- LOOKS
-opt.background = 'light'
+opt.background = 'dark'
 opt.termguicolors = true
 cmd 'colorscheme gruvbox'
-cmd 'hi clear CursorLine' -- only highlight the cursor line NUMBER
-cmd 'hi CursorLineNr ctermbg=NONE guibg=NONE'
+cmd 'highlight clear CursorLine' -- only highlight the cursor line NUMBER
+cmd 'highlight CursorLineNr ctermbg=NONE guibg=NONE'
 
 -- Autocommands
 cmd 'autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded $NVIMRC"'

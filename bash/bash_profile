@@ -43,7 +43,5 @@ export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 tabs -4
 export LESS=Rx4
 
-# Python SSL
-export REQUESTS_CA_BUNDLE="/etc/ssl/certs/ca-certificates.crt"
 # Python warnings
 export PYTHONWARNINGS="once:Unverified HTTPS request"

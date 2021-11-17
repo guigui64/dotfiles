@@ -4,37 +4,49 @@ local fn = vim.fn    -- to call Vim functions
 local g = vim.g      -- a table to access global variables
 local opt = vim.opt  -- to set options
 
-local function map(mode, lhs, rhs, opts)
-  local options = {noremap = true}
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
 -- PLUGINS
 ---- Bootstrap paq-nvim
 local install_path = fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', '--depth=1', 'https://github.com/savq/paq-nvim.git', install_path})
+    fn.system({'git', 'clone', '--depth=1', 'https://github.com/savq/paq-nvim.git', install_path})
 end
 ---- Get packages
 require 'paq' {
-    'savq/paq-nvim';                  -- Let Paq manage itself
+    'savq/paq-nvim';                               -- Let Paq manage itself
 
-    'nvim-lua/plenary.nvim';          -- Lua functions used by a lot of plugins
-    'neovim/nvim-lspconfig';          -- LSP clients configurations made easy
-    'nvim-telescope/telescope.nvim';  -- Fuzzy finder (TODO native fzf?)
-    'wellle/tmux-complete.vim';       -- tmux integration in completion lists
-    'tpope/vim-fugitive';             -- Git in Vim
-    'rbong/vim-flog';                 -- Git log in Vim
-    'tpope/vim-sensible';             -- T. Pope settings
-    'tpope/vim-surround';             -- Surround stuff
-    'tpope/vim-commentary';           -- Comment stuff
+    'kyazdani42/nvim-web-devicons';                -- For all icons
+    'nvim-lua/plenary.nvim';                       -- Lua functions used by a lot of plugins
 
-    'NLKNguyen/papercolor-theme';     -- Looks
-    'vim-airline/vim-airline';
-    'vim-airline/vim-airline-themes';
+    {'morhetz/gruvbox', opt=true};                 -- Colors and looks
+    'itchyny/vim-cursorword';
+
+    'neovim/nvim-lspconfig';                       -- LSP clients configurations made easy
+    'nvim-telescope/telescope.nvim';               -- Fuzzy finder
+    {'nvim-telescope/telescope-fzf-native.nvim', run='make'}; -- Native fzf implem
+    'echasnovski/mini.nvim';                       -- Collection of plugins (loaded below)
+
+    'lewis6991/gitsigns.nvim';                     -- Git decorations, blame etc.
+    'tpope/vim-fugitive';                          -- Git in Vim
+    'rbong/vim-flog';                              -- Git log in Vim
+
+    {'psf/black', opt=true};                       -- Python formatting (TODO packadd! when ft==py)
+    {'ray-x/go.nvim', opt=true};                   -- Go tools (TODO packadd! when ft==go)
+
 }
+-- Mini submodules
+require'mini.misc'.setup{}        -- misc functions (put, put_text)
+require'mini.comment'.setup{}     -- comment stuff
+require'mini.completion'.setup{}  -- LSP and fallback completions
+require'mini.statusline'.setup{}  -- simple statusline
+require'mini.surround'.setup{}    -- surround stuff
+require'mini.tabline'.setup{}     -- tabline/bufferline
 
+-- Git signs
+require'gitsigns'.setup{}
+
+-- LSP configs
+require'lspconfig'.gopls.setup{}
+require'lspconfig'.pyright.setup{}
 
 -- OPTIONS
 cmd 'filetype off'
@@ -44,9 +56,10 @@ opt.autowrite = true
 opt.secure = true
 opt.number = true
 opt.relativenumber = false
+opt.cursorline = true
 opt.ruler = true
 opt.laststatus = 2
-opt.showmode = true
+opt.showmode = false
 opt.showcmd = true
 opt.wildmode = {'longest', 'list', 'full'}
 opt.wildmenu = true
@@ -83,34 +96,40 @@ opt.smartcase = true
 opt.showmatch = true
 
 -- MAPPINGS
+local map = require 'mapfns'
 g.mapleader = ','
-map('n', '<leader>l', ':set list!<cr>')      -- toggle on/off listchars
-map('n', '/', '/\\v')                        -- very magic search
-map('v', '/', '/\\v')
-map('', '<leader><space>', ':let @/=""<cr>')
-map('n', 'j', 'gj')                          -- move up/down display lines
-map('n', 'k', 'gk')
-map('n', '<leader>nn', ':set number<cr>:let &relativenumber = (&relativenumber == 1 ? 0 : 1)<cr>') -- toggle relative line numbers
-map('n', '<leader>ev', ':split ' .. vim.env.MYVIMRC .. '<cr>')    -- edit config file
-map('n', '<leader>sv', ':source ' .. vim.env.MYVIMRC .. '<cr>')   -- source config file
-map('', '-', 'ddp')                                               -- move one line down
-map('', '+', 'ddkP')                                              -- move one line up
-map('', '<leader>stt', ':s/    /\t/g<cr>:let @/=""<cr>')          -- replace spaces by tabs
-map('i', '{<cr>', '{<cr>}<Exc>O')                                 -- auto close {
-map('n', '<leader>bg', ':let &background = ( &background == "dark"? "light" : "dark" )<CR>') -- switch bg color
-map('i', '<c-space>', '<c-x><c-o>')                               -- omni completion
+map.nnoremap('<leader>l', ':set list!<cr>')      -- toggle on/off listchars
+map.nnoremap('/', '/\\v')                        -- very magic search
+map.vnoremap('/', '/\\v')
+map.noremap('<leader><space>', ':let @/=""<cr>')
+map.nnoremap('j', 'gj')                          -- move up/down display lines
+map.nnoremap('k', 'gk')
+map.nnoremap('<leader>nn', ':set number<cr>:let &relativenumber = (&relativenumber == 1 ? 0 : 1)<cr>') -- toggle relative line numbers
+map.nnoremap('<leader>ev', ':split ' .. vim.env.MYVIMRC .. '<cr>')    -- edit config file
+map.nnoremap('<leader>sv', ':source ' .. vim.env.MYVIMRC .. '<cr>')   -- source config file
+map.noremap('-', 'ddp')                                               -- move one line down
+map.noremap('+', 'ddkP')                                              -- move one line up
+map.noremap('<leader>stt', ':s/    /\t/g<cr>:let @/=""<cr>')          -- replace spaces by tabs
+map.inoremap('{<cr>', '{<cr>}<Exc>O')                                 -- auto close {
+map.nnoremap('<leader>bg', ':let &background = ( &background == "dark"? "light" : "dark" )<CR>') -- switch bg color
+map.inoremap('<c-space>', '<c-x><c-o>')                               -- omni completion
 -- ?vim.api.nvim_set_keymap('i', '<c-@>', '<c-space>')
 cmd 'cnoreabbrev vds vertical diffsplit'
+-- Telescope mappings
+map.nnoremap('<c-p>', '<cmd>Telescope<cr>')
+map.nnoremap('<leader>ff', '<cmd>Telescope find_files<cr>')
+map.nnoremap('<leader>fg', '<cmd>Telescope live_grep<cr>')
+map.nnoremap('<leader>fb', '<cmd>Telescope buffers<cr>')
+map.nnoremap('<leader>fh', '<cmd>Telescope help_tags<cr>')
+-- Git signs
+map.nnoremap('<leader>gb', '<cmd>Gitsigns toggle_current_line_blame<cr>')
 
 -- LOOKS
 opt.background = 'light'
 opt.termguicolors = true
-cmd 'colorscheme PaperColor'
-cmd [[
-let g:airline_theme = 'papercolor'
-let g:airline#extensions#obsession#enabled = 1
-autocmd VimEnter * AirlineRefresh
-let g:airline_section_y = '%{airline#util#wrap(airline#parts#filetype(),0)}'
-let g:airline_section_x = ''
-let g:airline_section_z = '%p%% %l:%c'
-]]
+cmd 'colorscheme gruvbox'
+cmd 'hi clear CursorLine' -- only highlight the cursor line NUMBER
+cmd 'hi CursorLineNr ctermbg=NONE guibg=NONE'
+
+-- Autocommands
+cmd 'autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded $NVIMRC"'

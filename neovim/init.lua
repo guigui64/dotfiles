@@ -21,8 +21,12 @@ require 'paq' {
     'itchyny/vim-cursorword';
 
     'neovim/nvim-lspconfig';                       -- LSP clients configurations made easy
+
     'nvim-telescope/telescope.nvim';               -- Fuzzy finder
     {'nvim-telescope/telescope-fzf-native.nvim', run='make'}; -- Native fzf implem
+
+    'kyazdani42/nvim-tree.lua';                    -- File explorer
+
     'echasnovski/mini.nvim';                       -- Collection of plugins (loaded below)
 
     'lewis6991/gitsigns.nvim';                     -- Git decorations, blame etc.
@@ -44,6 +48,9 @@ require'mini.tabline'.setup{}     -- tabline/bufferline
 
 -- Git signs
 require'gitsigns'.setup{current_line_blame=true}
+
+-- Tree
+require'nvim-tree'.setup{}
 
 -- LSP configs
 require'lspconfig'.gopls.setup{}
@@ -124,7 +131,8 @@ map.nnoremap('<leader>fb', '<cmd>Telescope buffers<cr>')
 map.nnoremap('<leader>fh', '<cmd>Telescope help_tags<cr>')
 -- Git signs
 map.nnoremap('<leader>gb', '<cmd>Gitsigns toggle_current_line_blame<cr>')
-
+-- Tree
+map.nnoremap('<leader>tt', '<cmd>NvimTreeToggle<cr>')
 
 -- LOOKS
 opt.background = 'dark'

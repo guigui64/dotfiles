@@ -14,4 +14,8 @@ M.nnoremap = _map('n')
 M.vnoremap = _map('v')
 M.inoremap = _map('i')
 
+M.nnmapleader = function(lhs, rhs)
+    M.nnoremap('<leader>'..lhs, rhs)
+end
+
 return M

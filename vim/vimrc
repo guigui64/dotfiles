@@ -1,0 +1,192 @@
+" OPTIONS
+unlet! skip_defaults_vim
+source $VIMRUNTIME/defaults.vim
+set autowrite                   " when calling :make
+set secure                      " secure mode
+set number
+set norelativenumber
+set cursorline
+set laststatus=2
+set wildmode=longest,list,full  " command menu
+set visualbell                  " blink, don't beep
+set signcolumn=yes
+set path+="**"
+set encoding=utf-8
+set wrap                        " wrap and display stuff
+set textwidth=110
+set formatoptions=cqrn1
+set tabstop=4                   " tabs
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set mouse=a                     " enable mouse
+set scrolloff=3                 " 3 lines margin
+set matchpairs+=<:>             " use % to jump between pairs
+packadd! matchit                " load matchit plugin
+set listchars=tab:→\ ,trail:· ",eol:↲
+set list
+set splitright                  " for :vsplit
+set splitbelow                  " for :split
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+set undofile                    " persistent undo
+silent !mkdir -p ~/.vim/{backup,swap,undo} > /dev/null 2>&1
+set backupdir=~/.vim/backup
+set directory=~/.vim/swap
+set undodir=~/.vim/undo
+set hlsearch                    " search settings
+set ignorecase
+set smartcase
+set showmatch
+set foldmethod=marker           " fold markers
+
+" PLUGINS
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-fugitive'                               " Git
+Plug 'tpope/vim-surround'                               " Surround stuff
+Plug 'tpope/vim-commentary'                             " Comment stuff
+Plug 'tpope/vim-repeat'                                 " Repeat previous plugins commands
+Plug 'airblade/vim-gitgutter'                           " Git info in signcolumn
+Plug 'preservim/nerdtree'                               " NERDTree
+Plug 'ryanoasis/vim-devicons'                           " Nice icons
+Plug 'mhinz/vim-startify'                               " Homepage
+Plug 'bagrat/vim-buffet'                                " Buffers/tabs line
+Plug 'vim-airline/vim-airline'                          " Status line...
+Plug 'vim-airline/vim-airline-themes'                   " ...and themes
+Plug 'sainnhe/gruvbox-material'                         " Colorscheme
+Plug 'junegunn/rainbow_parentheses.vim'                 " Rainbow parentheses
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " FZF
+Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}         " Completion
+Plug 'wellle/tmux-complete.vim'                         " Complete from tmux
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }      " Go commands
+Plug 'EgZvor/vim-black'                                 " Black formatter for python
+call plug#end()
+
+" MAPPINGS
+"" leader
+let mapleader=","
+" very magic search
+nnoremap / /\v
+vnoremap / /\v
+" clear search
+noremap <leader><space> :let @/=''<CR>
+" move up/down display lines (rather than physical lines)
+nnoremap j gj
+nnoremap k gk
+" toggle on/off listchars
+noremap <leader>l :set list!<CR>
+" keep selection when indenting
+vnoremap < <gv
+vnoremap > >gv
+" toggle relative numbers
+nnoremap <leader>nn :set number<CR>:let &relativenumber = (&relativenumber == 1 ? 0 : 1)<CR>
+" vimrc
+nnoremap <leader>ev :split $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+" move one line down/up
+noremap - ddp
+noremap + ddkP
+" replace spaces by tabs
+noremap <leader>stt :s/    /\t/g<CR>:let @/=''<CR>
+" term
+nnoremap <leader>tb :botright terminal ++rows=10<CR>
+" forget thoses keys!!
+nnoremap <up>       <nop>
+nnoremap <down>     <nop>
+nnoremap <right>    <nop>
+nnoremap <left>     <nop>
+" toggle background
+noremap <leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+" navigate between buffers
+noremap <Tab> :bn<CR>
+noremap <S-Tab> :bp<CR>
+" NERDTree
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+" fzf find files, mappings, buffers etc.
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fm :Maps<CR>
+nnoremap <leader>fb :Buffers<CR>
+nnoremap <leader>ft :Tags<CR>
+" Coc
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> gd :<C-u>call CocActionAsync('jumpDefinition')<CR>
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>cf <Plug>(coc-format)
+nmap <leader>o :CocList outline<CR>
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" ABBREVIATIONS
+iabbrev adn     and
+iabbrev teh     the
+iabbrev unint   uint
+iabbrev conts   const
+cnoreabbrev vds vertical diffsplit
+
+" AUTOCOMMANDS
+"" templates
+augroup templates
+    au!
+    autocmd BufNewFile *.* silent! execute '0r ~/.vim/templates/skeleton.'.expand("<afile>:e")
+augroup END
+"" vimrc
+augroup vimrc
+    au!
+    autocmd! BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" LOOKS
+set background=dark
+set termguicolors
+colorscheme gruvbox-material
+autocmd VimEnter * colorscheme gruvbox-material
+let g:airline_theme = 'gruvbox_material'
+let g:airline_section_y = '%{airline#util#wrap(airline#parts#filetype(),0)}'
+let g:airline_section_x = ''
+let g:airline_section_z = '%p%% %l:%c'
+let g:startify_custom_header = 'startify#center([
+            \"Hello Guillaume"])'
+            " \"        ________ ++     ________",
+            " \"       /VVVVVVVV\++++  /VVVVVVVV\\",
+            " \"       \\VVVVVVVV/++++++\\VVVVVVVV/",
+            " \"        |VVVVVV|++++++++/VVVVV/'",
+            " \"        |VVVVVV|++++++/VVVVV/'",
+            " \"       +|VVVVVV|++++/VVVVV/'+",
+            " \"     +++|VVVVVV|++/VVVVV/'+++++",
+            " \"   +++++|VVVVVV|/VVV___++++++++++",
+            " \"     +++|VVVVVVVVVV/##/ +_+_+_+_",
+            " \"       +|VVVVVVVVV___ +/#_#,#_#,\\",
+            " \"        |VVVVVVV//##/+/#/+/#/'/#/",
+            " \"        |VVVVV/'+/#/+/#/+/#/ /#/",
+            " \"        |VVV/'++/#/+/#/ /#/ /#/",
+            " \"        'V/'  /##//##//##//###/",
+            " \"                 ++",
+
+
+" CONFIG PLUGINS
+let g:black_virtualenv = "~/.local/pipx/venvs/black"
+let g:black_linelength = 110
+
+
+" TODO:
+" Skeletons
+" FT

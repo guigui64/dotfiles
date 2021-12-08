@@ -1,7 +1,7 @@
 # vim: filetype=bash
 
 alias :q='exit'
-alias vim='nvim'
+alias vim='vimx'
 alias ll='ls -al --color=auto'
 alias df='df -Th --total'
 alias du='du -h'

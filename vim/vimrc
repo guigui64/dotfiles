@@ -1,7 +1,9 @@
 " OPTIONS
 unlet! skip_defaults_vim
 source $VIMRUNTIME/defaults.vim
+set exrc                        " load .vimrc in current directory if it exists
 set autowrite                   " when calling :make
+set autoread                    " after an external change but no change in vim
 set secure                      " secure mode
 set number
 set norelativenumber
@@ -53,7 +55,6 @@ Plug 'airblade/vim-gitgutter'                           " Git info in signcolumn
 Plug 'preservim/nerdtree'                               " NERDTree
 Plug 'ryanoasis/vim-devicons'                           " Nice icons
 Plug 'mhinz/vim-startify'                               " Homepage
-Plug 'bagrat/vim-buffet'                                " Buffers/tabs line
 Plug 'vim-airline/vim-airline'                          " Status line...
 Plug 'vim-airline/vim-airline-themes'                   " ...and themes
 Plug 'sainnhe/gruvbox-material'                         " Colorscheme
@@ -62,8 +63,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " FZF
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}         " Completion
 Plug 'wellle/tmux-complete.vim'                         " Complete from tmux
+Plug 'pakutoma/toggle-terminal'                         " Toggle terminal
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }      " Go commands
-Plug 'EgZvor/vim-black'                                 " Black formatter for python
+Plug 'psf/black', { 'branch': 'stable' }                " Black formatter for Python
 call plug#end()
 
 " MAPPINGS
@@ -92,8 +94,11 @@ noremap - ddp
 noremap + ddkP
 " replace spaces by tabs
 noremap <leader>stt :s/    /\t/g<CR>:let @/=''<CR>
-" term
+" terminal
+tnoremap <silent> <C-@> <C-w>:ToggleTerminal<CR>
+nnoremap <silent> <C-@> :ToggleTerminal<CR>
 nnoremap <leader>tb :botright terminal ++rows=10<CR>
+tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 " forget thoses keys!!
 nnoremap <up>       <nop>
 nnoremap <down>     <nop>
@@ -158,35 +163,21 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 set background=dark
 set termguicolors
 colorscheme gruvbox-material
-autocmd VimEnter * colorscheme gruvbox-material
 let g:airline_theme = 'gruvbox_material'
+let g:airline_powerline_fonts = 1
 let g:airline_section_y = '%{airline#util#wrap(airline#parts#filetype(),0)}'
 let g:airline_section_x = ''
 let g:airline_section_z = '%p%% %l:%c'
+let g:airline#extensions#tabline#enabled = 1
 let g:startify_custom_header = 'startify#center([
-            \"Hello Guillaume"])'
-            " \"        ________ ++     ________",
-            " \"       /VVVVVVVV\++++  /VVVVVVVV\\",
-            " \"       \\VVVVVVVV/++++++\\VVVVVVVV/",
-            " \"        |VVVVVV|++++++++/VVVVV/'",
-            " \"        |VVVVVV|++++++/VVVVV/'",
-            " \"       +|VVVVVV|++++/VVVVV/'+",
-            " \"     +++|VVVVVV|++/VVVVV/'+++++",
-            " \"   +++++|VVVVVV|/VVV___++++++++++",
-            " \"     +++|VVVVVVVVVV/##/ +_+_+_+_",
-            " \"       +|VVVVVVVVV___ +/#_#,#_#,\\",
-            " \"        |VVVVVVV//##/+/#/+/#/'/#/",
-            " \"        |VVVVV/'+/#/+/#/+/#/ /#/",
-            " \"        |VVV/'++/#/+/#/ /#/ /#/",
-            " \"        'V/'  /##//##//##//###/",
-            " \"                 ++",
+            \"██╗   ██╗██╗███╗   ███╗",
+            \"██║   ██║██║████╗ ████║",
+            \"██║   ██║██║██╔████╔██║",
+            \"╚██╗ ██╔╝██║██║╚██╔╝██║",
+            \" ╚████╔╝ ██║██║ ╚═╝ ██║",
+            \"  ╚═══╝  ╚═╝╚═╝     ╚═╝",
+            \])'
 
-
-" CONFIG PLUGINS
-let g:black_virtualenv = "~/.local/pipx/venvs/black"
-let g:black_linelength = 110
-
-
-" TODO:
-" Skeletons
-" FT
+" CONFIGURE PLUGINS
+let g:black_linelength = 100
+let g:toggle_terminal#command = 'bash'

@@ -2,6 +2,7 @@
   "dependencies": {
     "coc-clangd": ">=0.17.0",
     "coc-go": ">=1.0.0",
+    "coc-jedi": ">=0.29.15",
     "coc-pyright": ">=1.1.191",
     "coc-sh": ">=0.6.0"
   }

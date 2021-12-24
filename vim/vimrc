@@ -47,25 +47,27 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-fugitive'                               " Git
-Plug 'tpope/vim-surround'                               " Surround stuff
-Plug 'tpope/vim-commentary'                             " Comment stuff
-Plug 'tpope/vim-repeat'                                 " Repeat previous plugins commands
-Plug 'airblade/vim-gitgutter'                           " Git info in signcolumn
-Plug 'preservim/nerdtree'                               " NERDTree
-Plug 'ryanoasis/vim-devicons'                           " Nice icons
-Plug 'mhinz/vim-startify'                               " Homepage
-Plug 'vim-airline/vim-airline'                          " Status line...
-Plug 'vim-airline/vim-airline-themes'                   " ...and themes
-Plug 'sainnhe/gruvbox-material'                         " Colorscheme
-Plug 'junegunn/rainbow_parentheses.vim'                 " Rainbow parentheses
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " FZF
+Plug 'tpope/vim-fugitive'                                   " Git
+Plug 'tpope/vim-surround'                                   " Surround stuff
+Plug 'tpope/vim-commentary'                                 " Comment stuff
+Plug 'tpope/vim-repeat'                                     " Repeat previous plugins commands
+Plug 'airblade/vim-gitgutter'                               " Git info in signcolumn
+Plug 'preservim/nerdtree'                                   " NERDTree
+Plug 'sheerun/vim-polyglot'                                 " Best syntax and indentation support
+Plug 'ryanoasis/vim-devicons'                               " Nice icons
+Plug 'mhinz/vim-startify'                                   " Homepage
+Plug 'vim-airline/vim-airline'                              " Status line...
+Plug 'vim-airline/vim-airline-themes'                       " ...and themes
+Plug 'sainnhe/gruvbox-material'                             " Colorschemes
+Plug 'junegunn/rainbow_parentheses.vim'                     " Rainbow parentheses
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }         " FZF
 Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}         " Completion
-Plug 'wellle/tmux-complete.vim'                         " Complete from tmux
-Plug 'pakutoma/toggle-terminal'                         " Toggle terminal
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }      " Go commands
-Plug 'psf/black', { 'branch': 'stable' }                " Black formatter for Python
+Plug 'neoclide/coc.nvim', {'branch': 'release'}             " Completion
+Plug 'wellle/tmux-complete.vim'                             " Complete from tmux
+Plug 'pakutoma/toggle-terminal'                             " Toggle terminal
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }          " Go commands
+Plug 'psf/black', { 'branch': 'stable' }                    " Black formatter for Python
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }   " Display colors next to #rgb
 call plug#end()
 
 " MAPPINGS
@@ -156,12 +158,14 @@ augroup vimrc
     au!
     autocmd! BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
-" Highlight the symbol and its references when holding the cursor.
+"" Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
+"" Enable rainbow parenthses
+autocmd VimEnter * RainbowParentheses
 
 " LOOKS
-set background=dark
 set termguicolors
+set background=dark
 colorscheme gruvbox-material
 let g:airline_theme = 'gruvbox_material'
 let g:airline_powerline_fonts = 1
@@ -181,3 +185,6 @@ let g:startify_custom_header = 'startify#center([
 " CONFIGURE PLUGINS
 let g:black_linelength = 100
 let g:toggle_terminal#command = 'bash'
+let g:Hexokinase_highlighters = [ 'sign_column', 'backgroundfull' ]
+let g:Hexokinase_optOutPatterns = [ 'colour_names' ]
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]

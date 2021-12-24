@@ -14,6 +14,7 @@ alias pyva='source venv/bin/activate'
 alias pyvd='deactivate'
 alias xo='xdg-open'
 alias Gogh='bash -c "$(wget -qO- https://git.io/vQgMr)"'
+alias aoc='cd ~/git/advent-of-code/2021'
 
 # Clipboard
 alias pbcopy='xclip -selection clipboard'

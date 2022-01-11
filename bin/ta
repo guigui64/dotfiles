@@ -31,13 +31,13 @@ fi
 # If --start was passed in immediately start a new session based on the current directory
 if [ "$DIR" == "--start" ]; then
     echo "starting"
-    path_name="$(basename "$PWD" | tr . -)"
-    session_name=${path_name//./_}
+    path_name="$(basename "$PWD")"
+    session_name=${path_name//./-dot-}
 else
     # ask the user which directory to start in
-    _session_name=$(cd $DIR && ls -d */ | sed  "s|/||g" | fzf --reverse --header="Select project from $(basename $DIR) >")
-    session_name=${_session_name//./_}
-    path_name=$DIR/$session_name
+    _name=$(cd $DIR && ls -d */ | sed  "s|/||g" | fzf --reverse --header="Select project from $(basename $DIR) >")
+    path_name=$DIR/$_name
+    session_name=${_name//./-dot-}
 fi
 
 echo session name is \"$session_name\"

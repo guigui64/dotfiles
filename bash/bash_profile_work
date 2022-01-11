@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Java
+export JAVA_HOME=$HOME/java/default
+export PATH=$JAVA_HOME/bin:$PATH
+
+# ANT
+export ANT_ARGS='-logger org.apache.tools.ant.listener.AnsiColorLogger'
+# export ANT_OPTS='-Dant.logger.defaults=$HOME/.ant-colors'
+
+# Python SSL
+export REQUESTS_CA_BUNDLE="/etc/ssl/certs/ca-certificates.crt"
+
+# Work bin
+export PATH=$PATH:$HOME/bin-work

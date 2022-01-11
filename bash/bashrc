@@ -49,3 +49,6 @@ else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 "(%s)")\$ '
 fi
 unset color_prompt
+
+# Tmux
+source "${DOTFILES_ROOT}/tmux/tmux-completion.bash"

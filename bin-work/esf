@@ -1,0 +1,70 @@
+#!/bin/bash
+
+usage() {
+    echo "Usage: $0 [-h|--help] [-v VERSION] [-d]"
+}
+
+workspace="/home/comte/work"
+localroot=$workspace
+product=simtg_framework
+extra=""
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        "-h"|"--help")
+            usage
+            exit 0
+            ;;
+        "-v")
+            shift
+            version="$1"
+            shift
+            ;;
+        "-d")
+            extra="$extra --no-display-options"
+            shift
+            ;;
+        *)
+            shift
+            ;;
+    esac
+done
+
+if [[ -z $SIMANT_CACHE ]]; then
+    SIMANT_CACHE=~/tmp/SIMANT_CACHE
+fi
+
+if [[ -z "$version" ]]; then
+    # Find latest version
+    target=$(ls -1v $SIMANT_CACHE/$product | tail -1)
+    if [[ -z $target ]]; then
+        1>&2 echo "No version found of $product in $SIMANT_CACHE"
+        exit 1
+    fi
+    target=$SIMANT_CACHE/$product/$target
+    echo "Using latest version $target"
+elif [[ "$version" == "999.0.0" || "$version" == "333.0.0" ]]; then
+    target=$localroot/$product/delivery/${product}_$version
+else
+    target=$SIMANT_CACHE/$product/${product}_$version
+fi
+
+if [[ ! -f $target/eclipse ]]; then
+    1>&2 echo "Could not find $target/eclipse"
+    exit 1
+fi
+
+cmd="$target/eclipse $extra -w $workspace"
+if [[ "$version" == "999.0.0" || "$version" == "333.0.0" ]]; then
+    cmd="$cmd --forced-path-to-eclipse $target/eclipse.dev"
+fi
+
+# Export GTK theme variables (one for GTK2, one for GTK3, in case -d option is
+# used)
+THEME=${THEME:-light}
+export GTK_THEME="Yaru:$THEME"
+export GTK2_RC_FILES=/usr/share/themes/Yaru-$THEME/gtk-2.0/gtkrc
+
+echo "$cmd ..."
+$cmd

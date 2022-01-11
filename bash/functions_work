@@ -1,0 +1,26 @@
+# vim: filetype=bash
+
+# changelog from git log
+# usage: changelog <ORIGIN>
+changelog() {
+  if [ ! "$#" -gt 0 ]; then
+      echo "Need an origin for the changelog (i.e. origin/master)";
+    return 1;
+  fi
+  git log --grep="Closes" $1.. \
+      | grep -B2 "Closes" \
+      | sed -E -e 's/^\s*//' \
+               -e '/^$/d' \
+               -e '/^--$/d' \
+               -e 's/Closes (.+)/* \1/' \
+               -e 's/Resolve "(.+)"/\1/' \
+      | tac \
+      | awk '/^*/{ printf("%s : ", $0); next } 1' \
+      | tac
+}
+
+# MOBA
+moba-gnome-terminal() {
+    #/usr/lib/gnome-terminal/gnome-terminal-server --app-id moba.Terminal &
+    gnome-terminal --app-id moba.Terminal
+}

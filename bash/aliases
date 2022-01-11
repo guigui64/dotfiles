@@ -2,7 +2,11 @@
 
 alias :q='exit'
 alias vim='vimx'
+alias ls='ls --color=auto --group-directories-first'
 alias ll='ls -al --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 alias df='df -Th --total'
 alias du='du -h'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"

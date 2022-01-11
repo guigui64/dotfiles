@@ -15,6 +15,10 @@ HISTCONTROL=ignoreboth
 HISTSIZE=1000000
 HISTFILESIZE=2000000
 
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 shopt -s globstar
@@ -45,3 +49,6 @@ export LESS=Rx4
 
 # Python warnings
 export PYTHONWARNINGS="once:Unverified HTTPS request"
+
+# Detect work environment and source associated profile
+[[ -f ~/.work-env ]] && source ~/.bash_profile_work

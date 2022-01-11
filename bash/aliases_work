@@ -1,0 +1,17 @@
+# vim: filetype=bash
+
+unalias vim
+
+# SIMTG
+alias simenv='source ~/git/scripts/envSimTG.sh'
+
+# PROXY
+alias proxy='source ~/git/scripts/proxy.sh'
+alias piproxy='source ~/git/scripts/piproxy.sh'
+
+# SSH
+alias gogotham='ssh -X comte_g@gotham'
+alias gopi='ssh pi@10.42.0.3'
+
+# Toggle NPM registry
+alias tonpm="vim ~/.npmrc -c 'g/registry/normal gcc' -c 'wq' && cat ~/.npmrc | grep registry"

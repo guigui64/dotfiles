@@ -22,6 +22,7 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set mouse=a                     " enable mouse
+set ttymouse=xterm2             " make it work in tmux
 set scrolloff=3                 " 3 lines margin
 set matchpairs+=<:>             " use % to jump between pairs
 packadd! matchit                " load matchit plugin
@@ -54,12 +55,11 @@ Plug 'tpope/vim-repeat'                                     " Repeat previous pl
 Plug 'airblade/vim-gitgutter'                               " Git info in signcolumn
 Plug 'preservim/nerdtree'                                   " NERDTree
 Plug 'sheerun/vim-polyglot'                                 " Best syntax and indentation support
-Plug 'ryanoasis/vim-devicons'                               " Nice icons
-Plug 'mhinz/vim-startify'                                   " Homepage
 Plug 'vim-airline/vim-airline'                              " Status line...
 Plug 'vim-airline/vim-airline-themes'                       " ...and themes
 Plug 'sainnhe/gruvbox-material'                             " Colorschemes
-Plug 'junegunn/rainbow_parentheses.vim'                     " Rainbow parentheses
+Plug 'luochen1990/rainbow'                                  " Rainbow parentheses
+Plug 'Yggdroot/indentLine'                                  " Indentation guides
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }         " FZF
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}             " Completion
@@ -68,6 +68,7 @@ Plug 'pakutoma/toggle-terminal'                             " Toggle terminal
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }          " Go commands
 Plug 'psf/black', { 'branch': 'stable' }                    " Black formatter for Python
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }   " Display colors next to #rgb
+Plug 'ryanoasis/vim-devicons'                               " Nice icons
 call plug#end()
 
 " MAPPINGS
@@ -109,7 +110,7 @@ nnoremap <left>     <nop>
 " toggle background
 noremap <leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 " navigate between buffers
-noremap <Tab> :bn<CR>
+noremap <leader><Tab> :bn<CR>
 noremap <S-Tab> :bp<CR>
 " NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -133,11 +134,11 @@ nmap <leader>cf <Plug>(coc-format)
 nmap <leader>o :CocList outline<CR>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
 endfunction
 
 " ABBREVIATIONS
@@ -160,8 +161,6 @@ augroup vimrc
 augroup END
 "" Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
-"" Enable rainbow parenthses
-autocmd VimEnter * RainbowParentheses
 
 " LOOKS
 set termguicolors
@@ -169,22 +168,26 @@ set background=dark
 colorscheme gruvbox-material
 let g:airline_theme = 'gruvbox_material'
 let g:airline_powerline_fonts = 1
-let g:airline_section_y = '%{airline#util#wrap(airline#parts#filetype(),0)}'
 let g:airline_section_x = ''
+let g:airline_section_y = '%{airline#util#wrap(airline#parts#filetype(),0)}'
 let g:airline_section_z = '%p%% %l:%c'
 let g:airline#extensions#tabline#enabled = 1
-let g:startify_custom_header = 'startify#center([
-            \"██╗   ██╗██╗███╗   ███╗",
-            \"██║   ██║██║████╗ ████║",
-            \"██║   ██║██║██╔████╔██║",
-            \"╚██╗ ██╔╝██║██║╚██╔╝██║",
-            \" ╚████╔╝ ██║██║ ╚═╝ ██║",
-            \"  ╚═══╝  ╚═╝╚═╝     ╚═╝",
-            \])'
 
 " CONFIGURE PLUGINS
 let g:black_linelength = 100
 let g:toggle_terminal#command = 'bash'
 let g:Hexokinase_highlighters = [ 'sign_column', 'backgroundfull' ]
 let g:Hexokinase_optOutPatterns = [ 'colour_names' ]
-let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+let g:indentLine_char = '│'
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+            \ 'guifgs': [ '#458588', '#b16286', '#cc241d', '#d65d0e', ],
+            \ 'separately': { 'nerdtree' : 0 }
+            \ }
+let NERDTreeShowHidden = 1
+
+" Fixes
+"" Get rid of the [ ] around icons in NERDTree
+if exists("g:loaded_webdevicons")
+    call webdevicons#refresh()
+endif

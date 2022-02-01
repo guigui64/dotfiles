@@ -2,11 +2,7 @@
 
 alias :q='exit'
 alias vim='vimx'
-alias ls='ls --color=auto --group-directories-first'
-alias ll='ls -al --color=auto'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+alias vimrc='vim ~/.vim/vimrc'
 alias df='df -Th --total'
 alias du='du -h'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
@@ -36,3 +32,24 @@ alias wg='while (true) ; do clear ; git --no-pager lga -n 16 ; echo === ; gsss ;
 alias wgl='while (true) ; do clear ; git --no-pager lga -n 15 ; sleep 5 ; done'
 alias wgs='while (true) ; do clear ; git status ; sleep 5 ; done'
 alias gka='gitk --all'
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    if [ -r ~/.dircolors ]; then
+        eval "$(dircolors -b ~/.dircolors)"
+    else
+        eval "$(dircolors -b)"
+    fi
+    alias ls='ls --color=auto --group-directories-first'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+else
+    alias ls='ls --group-directories-first'
+fi
+
+# some more ls aliases
+alias ll='ls -halF'
+alias la='ls -A'
+alias l='ls -CF'

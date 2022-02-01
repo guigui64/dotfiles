@@ -58,6 +58,8 @@ Plug 'sheerun/vim-polyglot'                                 " Best syntax and in
 Plug 'vim-airline/vim-airline'                              " Status line...
 Plug 'vim-airline/vim-airline-themes'                       " ...and themes
 Plug 'sainnhe/gruvbox-material'                             " Colorschemes
+Plug 'sainnhe/sonokai'
+Plug 'sainnhe/everforest'
 Plug 'luochen1990/rainbow'                                  " Rainbow parentheses
 Plug 'Yggdroot/indentLine'                                  " Indentation guides
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }         " FZF
@@ -67,6 +69,9 @@ Plug 'wellle/tmux-complete.vim'                             " Complete from tmux
 Plug 'pakutoma/toggle-terminal'                             " Toggle terminal
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }          " Go commands
 Plug 'psf/black', { 'branch': 'stable' }                    " Black formatter for Python
+Plug 'habamax/vim-asciidoctor'                              " Asciidoctor
+Plug 'cdelledonne/vim-cmake'                                " CMake
+Plug 'alvan/vim-closetag'                                   " Close HTML tags
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }   " Display colors next to #rgb
 Plug 'ryanoasis/vim-devicons'                               " Nice icons
 call plug#end()
@@ -95,6 +100,8 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 " move one line down/up
 noremap - ddp
 noremap + ddkP
+" auto }
+inoremap {<CR>  {<CR>}<Esc>O
 " replace spaces by tabs
 noremap <leader>stt :s/    /\t/g<CR>:let @/=''<CR>
 " terminal
@@ -161,15 +168,19 @@ augroup vimrc
 augroup END
 "" Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
+"" NERDTRee auto open and auto close
+augroup nerd
+    au!
+    autocmd VimEnter * NERDTree | wincmd p " focus on previous window
+    autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif " close the tab if NERDTree is the only window remaining in it
+augroup END
 
 " LOOKS
 set termguicolors
 set background=dark
-colorscheme gruvbox-material
-let g:airline_theme = 'gruvbox_material'
+colorscheme sonokai
+let g:airline_theme = 'sonokai'
 let g:airline_powerline_fonts = 1
-let g:airline_section_x = ''
-let g:airline_section_y = '%{airline#util#wrap(airline#parts#filetype(),0)}'
 let g:airline_section_z = '%p%% %l:%c'
 let g:airline#extensions#tabline#enabled = 1
 
@@ -181,10 +192,12 @@ let g:Hexokinase_optOutPatterns = [ 'colour_names' ]
 let g:indentLine_char = '│'
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-            \ 'guifgs': [ '#458588', '#b16286', '#cc241d', '#d65d0e', ],
+            \ 'guifgs': [ '#76cce0', '#b39df3', '#fc5d7c', '#f39660', ],
             \ 'separately': { 'nerdtree' : 0 }
             \ }
 let NERDTreeShowHidden = 1
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.jsx,*.tsx"
+let g:vim_markdown_conceal = 0
 
 " Fixes
 "" Get rid of the [ ] around icons in NERDTree

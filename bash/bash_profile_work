@@ -11,5 +11,8 @@ export ANT_ARGS='-logger org.apache.tools.ant.listener.AnsiColorLogger'
 # Python SSL
 export REQUESTS_CA_BUNDLE="/etc/ssl/certs/ca-certificates.crt"
 
+# Node
+export PATH=$HOME/.local/lib/nodejs/node-lts/bin:$PATH
+
 # Work bin
 export PATH=$PATH:$HOME/bin-work

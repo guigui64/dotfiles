@@ -50,6 +50,12 @@ else
 fi
 unset color_prompt
 
+# Forget previous prompt setting, use Starship.rs (sh -c "$(curl -fsSL https://starship.rs/install.sh)")
+eval "$(starship init bash)"
+
+# Gita (pip install -U gita)
+source "${DOTFILES_ROOT}/bash/.gita-completion.bash"
+
 # Tmux
 source "${DOTFILES_ROOT}/tmux/tmux-completion.bash"
 
@@ -65,7 +71,7 @@ export FZF_DEFAULT_OPTS="
 --bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'
 --bind 'ctrl-v:execute(echo {+} | xargs -o vim)'
 "
-export FZF_DEFAULT_COMMAND="fdfind --hidden"
+export FZF_DEFAULT_COMMAND="fd --hidden"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
 

@@ -138,6 +138,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>cf <Plug>(coc-format)
+vmap <leader>cf <Plug>(coc-format-selected)
 nmap <leader>o :CocList outline<CR>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()

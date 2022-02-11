@@ -1,0 +1,56 @@
+[
+    {
+        "iconPath": ":google",
+        "name": "Google",
+        "trigger": "gg ",
+        "url": "https://www.google.com/search?q=%s"
+    },
+    {
+        "iconPath": ":youtube",
+        "name": "Youtube",
+        "trigger": "yt ",
+        "url": "https://www.youtube.com/results?search_query=%s"
+    },
+    {
+        "iconPath": ":amazon",
+        "name": "Amazon",
+        "trigger": "ama ",
+        "url": "http://www.amazon.com/s/?field-keywords=%s"
+    },
+    {
+        "iconPath": ":ebay",
+        "name": "Ebay",
+        "trigger": "eb ",
+        "url": "http://www.ebay.com/sch/i.html?_nkw=%s"
+    },
+    {
+        "iconPath": ":github",
+        "name": "GitHub",
+        "trigger": "gh ",
+        "url": "https://github.com/search?utf8=✓&q=%s"
+    },
+    {
+        "iconPath": ":wolfram",
+        "name": "Wolfram Alpha",
+        "trigger": "=",
+        "url": "https://www.wolframalpha.com/input/?i=%s"
+    },
+    {
+        "iconPath": ":duckduckgo",
+        "name": "DuckDuckGo",
+        "trigger": "dd ",
+        "url": "https://duckduckgo.com/?q=%s"
+    },
+    {
+        "iconPath": "/home/guillaume/.config/albert/org.albert.extension.websearch/{c8bc1bd2-a6f9-4fe2-be96-e2bd5b1ffb83}.png",
+        "name": "cppreferences",
+        "trigger": "cpp",
+        "url": "https://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=%s"
+    },
+    {
+        "iconPath": "/home/guillaume/.config/albert/org.albert.extension.websearch/{261877bb-836d-491e-8901-f552e5b4c155}.png",
+        "name": "pkg.go.dev",
+        "trigger": "go",
+        "url": "https://pkg.go.dev/search?q=%s"
+    }
+]

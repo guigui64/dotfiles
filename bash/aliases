@@ -1,8 +1,8 @@
 # vim: filetype=bash
 
 alias :q='exit'
-alias vim='vimx'
-alias vimrc='vim ~/.vim/vimrc'
+alias vim='nvim'
+alias vimrc='nvim ~/.config/nvim/'
 alias df='df -Th --total'
 alias du='du -h'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"

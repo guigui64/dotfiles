@@ -1,0 +1,27 @@
+#! /bin/bash
+shopt -s extglob
+
+if [[ $# != 1 ]]; then
+    echo "Usage: $0 MP4_FILE"
+    exit 1
+fi
+
+file=$1
+file=${file/.mp4/}
+
+if [[ ! -f "${file}.srt" ]] ; then
+    echo "No subtitle => abort"
+    exit 1
+fi
+
+echo "Creating ${file}.mkv..."
+ffmpeg -i "${file}.mp4" -i "${file}.srt" -c:v copy -c:a copy -c:s srt -metadata:s:s:0 language=eng "${file}.mkv"
+if [[ $? != 0 ]] ; then
+    echo "Error with ffmpeg, abort"
+    exit 1
+fi
+
+echo "Deleting mp4 and srt..."
+rm -v ${file}.{mp4,srt}
+
+echo "Done !"

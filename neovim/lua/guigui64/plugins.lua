@@ -84,6 +84,7 @@ return require("packer").startup(function(use)
     use({ "sitiom/nvim-numbertoggle", config = function() require("numbertoggle").setup() end }) -- toggle relative numbers when it matters
     use("lukas-reineke/indent-blankline.nvim")
     use("lewis6991/gitsigns.nvim") -- Git signs, blame, etc.
+    use("sheerun/vim-polyglot") -- detect more filetypes
 
     -- Automatically set up your configuration after cloning packer.nvim
     if Packer_bootstrap then

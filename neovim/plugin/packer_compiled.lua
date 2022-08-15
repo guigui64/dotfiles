@@ -221,6 +221,11 @@ _G.packer_plugins = {
     path = "/home/guillaume/.local/share/nvim/site/pack/packer/start/vim-monkey-c",
     url = "https://github.com/guigui64/vim-monkey-c"
   },
+  ["vim-polyglot"] = {
+    loaded = true,
+    path = "/home/guillaume/.local/share/nvim/site/pack/packer/start/vim-polyglot",
+    url = "https://github.com/sheerun/vim-polyglot"
+  },
   ["vim-repeat"] = {
     loaded = true,
     path = "/home/guillaume/.local/share/nvim/site/pack/packer/start/vim-repeat",

@@ -53,6 +53,7 @@ Plug 'tpope/vim-surround'                                   " Surround stuff
 Plug 'tpope/vim-commentary'                                 " Comment stuff
 Plug 'tpope/vim-repeat'                                     " Repeat previous plugins commands
 Plug 'tpope/vim-abolish'                                    " Abolish(abbrev) Subvert(substitution) Coerce (crs, crc, etc.)
+Plug 'tpope/vim-eunuch'                                     " UNIX shell commands sugar
 Plug 'matze/vim-move'                                       " Move lines or selections with <A-h/j/k/l>
 Plug 'airblade/vim-gitgutter'                               " Git info in signcolumn
 Plug 'preservim/nerdtree'                                   " NERDTree
@@ -77,6 +78,7 @@ Plug 'alvan/vim-closetag'                                   " Close HTML tags
 Plug 'klimeryk/vim-monkey-c'                                " Monkey C (Garmin)
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }   " Display colors next to #rgb
 Plug 'ryanoasis/vim-devicons'                               " Nice icons
+Plug 'pantharshit00/vim-prisma'                             " Prisma syntax hi
 call plug#end()
 
 " MAPPINGS

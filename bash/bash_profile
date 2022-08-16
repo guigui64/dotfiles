@@ -52,3 +52,4 @@ export PYTHONWARNINGS="once:Unverified HTTPS request"
 
 # Detect work environment and source associated profile
 [[ -f ~/.work-env ]] && source ~/.bash_profile_work
+. "$HOME/.cargo/env"

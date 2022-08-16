@@ -4,7 +4,8 @@ unalias vim
 
 # SIMTG
 alias simenv='source ~/git/dotfiles/bin-work/envSimTG.sh'
-alias afab='ant -f ant/build.xml'
+alias afab='ant -f ant/build.xml -DWno_deprecated=true'
+alias afabskip='afab -Dsimant.consistencycheck.skip=true'
 
 # PROXY
 alias proxy='source ~/git/dotfiles/bin-work/proxy.sh'
@@ -12,7 +13,7 @@ alias piproxy='source ~/git/dotfiles/bin-work/piproxy.sh'
 
 # SSH
 alias gogotham='ssh -X comte_g@gotham'
-alias gopi='ssh pi@10.42.0.3'
+alias gopi='ssh -X pi@10.42.0.3'
 
 # Toggle NPM registry
 alias tonpm="vim ~/.npmrc -c 'g/^\(; \)\?registry/normal gcc' -c 'wq' && cat ~/.npmrc | grep registry"

@@ -42,13 +42,13 @@
         "url": "https://duckduckgo.com/?q=%s"
     },
     {
-        "iconPath": "/home/guillaume/.config/albert/org.albert.extension.websearch/{c8bc1bd2-a6f9-4fe2-be96-e2bd5b1ffb83}.png",
+        "iconPath": "/home/comte/.config/albert/org.albert.extension.websearch/{3ddc8843-477b-4955-ad59-870558fc14b6}.png",
         "name": "cppreferences",
         "trigger": "cpp",
         "url": "https://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=%s"
     },
     {
-        "iconPath": "/home/guillaume/.config/albert/org.albert.extension.websearch/{261877bb-836d-491e-8901-f552e5b4c155}.png",
+        "iconPath": "/home/comte/.config/albert/org.albert.extension.websearch/{7c8d7d65-2ff6-4eaf-9448-dd3ea0e1851a}.png",
         "name": "pkg.go.dev",
         "trigger": "go",
         "url": "https://pkg.go.dev/search?q=%s"

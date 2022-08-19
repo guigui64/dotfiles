@@ -1,7 +1,5 @@
 # vim: filetype=bash
 
-unalias vim
-
 # SIMTG
 alias simenv='source ~/git/dotfiles/bin-work/envSimTG.sh'
 alias afab='ant -f ant/build.xml -DWno_deprecated=true'

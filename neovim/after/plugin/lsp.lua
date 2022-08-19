@@ -30,14 +30,20 @@ local sumneko_config = {
 }
 
 require('lsp-setup').setup({
+    ['<leader>rn'] = 'lua vim.lsp.buf.rename()',
+    ['<leader>ca'] = 'lua vim.lsp.buf.code_action()',
+    ['<leader>f'] = 'lua vim.lsp.buf.formatting()',
     servers = {
         gopls = {},
         clangd = {},
         bashls = {},
-        eslint = {},
-        jsonls = {},
         sumneko_lua = sumneko_config,
         pyright = {},
+        -- web stuff
+        emmet_ls = {},
+        html = {},
         tsserver = {},
+        eslint = {},
+        jsonls = {},
     }
 })

@@ -34,7 +34,6 @@ cmp.setup({
         -- { name = 'snippy' }, -- For snippy users.
         { name = 'nvim_lua' },
         { name = 'tmux' },
-    }, {
         { name = 'buffer' },
     })
 })

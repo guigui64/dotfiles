@@ -22,3 +22,9 @@ require("gitsigns").setup({
 local nnoremap = require("guigui64.map").nnoremap
 
 nnoremap("<leader>f", ":Neoformat<cr>")
+
+-- Netrw
+
+vim.g.netrw_liststyle = 3 -- tree mode
+vim.g.netrw_banner = 0
+vim.g.netrw_browse_split = 4 -- open in previous window

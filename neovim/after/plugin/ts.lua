@@ -9,5 +9,17 @@ require("nvim-treesitter.configs").setup({
         "javascript", "typescript", "json",
         "lua",
         "python",
+    },
+    autotag = { -- from windwp/nvim-ts-autotag plugin
+        enable = true,
+        filetypes = {
+            'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx',
+            'rescript',
+            'xml',
+            'php',
+            'markdown',
+            'glimmer', 'handlebars', 'hbs',
+            'jst'
+        }
     }
 })

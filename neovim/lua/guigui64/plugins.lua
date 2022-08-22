@@ -78,6 +78,7 @@ return require("packer").startup(function(use)
 
     -- Languages
     use("guigui64/vim-monkey-c")
+    use("windwp/nvim-ts-autotag") -- html/xml tags autoclose/autorename (using TS)
 
     -- Other stuff
     use("sbdchd/neoformat")

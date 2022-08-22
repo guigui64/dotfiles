@@ -40,8 +40,15 @@ require('lsp-setup').setup({
         sumneko_lua = sumneko_config,
         pyright = {},
         -- web stuff
-        emmet_ls = {},
-        html = {},
+        cssls = {
+            filetypes = { "css", "sass", "scss", "less", "jst" }
+        },
+        emmet_ls = {
+            filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "jst" }
+        },
+        html = {
+            filetypes = { "html", "jst" }
+        },
         tsserver = {},
         eslint = {},
         jsonls = {},

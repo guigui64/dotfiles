@@ -2,6 +2,7 @@
 
 alias :q='exit'
 alias vim='nvim'
+alias vimdiff='nvim -d'
 alias vimrc='nvim ~/.config/nvim/'
 alias df='df -Th --total'
 alias du='du -h'
@@ -15,6 +16,7 @@ alias pyvd='deactivate'
 alias xo='xdg-open'
 alias Gogh='bash -c "$(wget -qO- https://git.io/vQgMr)"'
 alias aoc='cd ~/git/advent-of-code/2021'
+alias fd='fdfind'
 
 # Clipboard
 alias pbcopy='xclip -selection clipboard'

@@ -64,6 +64,7 @@ return require("packer").startup(function(use)
             "hrsh7th/vim-vsnip"
         },
     }
+    use("rafamadriz/friendly-snippets")
 
     -- Tree-sitter
     use {
@@ -75,6 +76,7 @@ return require("packer").startup(function(use)
     use("folke/tokyonight.nvim")
     use("kyazdani42/nvim-web-devicons")
     use("nvim-lualine/lualine.nvim")
+    use("kyazdani42/nvim-tree.lua")
 
     -- Languages
     use("guigui64/vim-monkey-c")

@@ -7,6 +7,7 @@
 	lga = log --graph --decorate --oneline --all
 	lgs = log --graph --decorate --oneline
 	changelog = log --format=%s --reverse
+    cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 -r git branch -d"
 [core]
 	editor = nvim
 [push]
@@ -14,6 +15,7 @@
 [user]
 	email = guillaume.comte10@gmail.com
 	name = guigui64
+	signingKey = 305B233A32B07CC4
 [fetch]
 	prune = true
 [diff]

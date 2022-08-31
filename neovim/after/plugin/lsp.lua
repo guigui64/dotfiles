@@ -29,10 +29,24 @@ local sumneko_config = {
     }
 }
 
+local no_format_on_save_clients = {
+    -- web stuff is formatted with prettier, not LSP
+    "emmet_ls",
+    "html",
+    "tsserver",
+    "eslint",
+    "jsonls",
+}
+
 require('lsp-setup').setup({
-    ['<leader>rn'] = 'lua vim.lsp.buf.rename()',
-    ['<leader>ca'] = 'lua vim.lsp.buf.code_action()',
-    ['<leader>f'] = 'lua vim.lsp.buf.formatting()',
+    mappings = {
+        gd = 'lua require"telescope.builtin".lsp_definitions()',
+        gi = 'lua require"telescope.builtin".lsp_implementations()',
+        gr = 'lua require"telescope.builtin".lsp_references()',
+        ['<leader>rn'] = 'lua vim.lsp.buf.rename()',
+        ['<leader>ca'] = 'lua vim.lsp.buf.code_action()',
+        ['<leader>f'] = 'lua vim.lsp.buf.formatting()',
+    },
     servers = {
         gopls = {},
         clangd = {},
@@ -52,5 +66,22 @@ require('lsp-setup').setup({
         tsserver = {},
         eslint = {},
         jsonls = {},
-    }
+    },
+    on_attach = function(client, _)
+        for _, c in ipairs(no_format_on_save_clients) do
+            if c == client then
+                return -- skip auto format for those clients
+            end
+        end
+        require('lsp-setup.utils').format_on_save(client)
+    end
 })
+
+-- format web files with prettier
+vim.g.neoformat_only_msg_on_error = true
+vim.cmd [[
+    augroup web_format
+        autocmd!
+        autocmd BufWritePre *.tsx,*.jsx,*.ts,*.js,*.json Neoformat prettier
+    augroup END
+]]

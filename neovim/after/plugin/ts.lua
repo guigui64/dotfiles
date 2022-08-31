@@ -21,5 +21,6 @@ require("nvim-treesitter.configs").setup({
             'glimmer', 'handlebars', 'hbs',
             'jst'
         }
-    }
+    },
+    highlight = { enable = true },
 })

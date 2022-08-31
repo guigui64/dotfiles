@@ -5,7 +5,7 @@
 if [[ $# == 1 ]]; then
     selected="$1"
 else
-    selected=$(fdfind --type d --maxdepth 1 . ~/git | fzf)
+    selected=$(fdfind --type d --maxdepth 2 . ~ | fzf)
 fi
 
 if [[ -z "$selected" ]]; then exit 1; fi

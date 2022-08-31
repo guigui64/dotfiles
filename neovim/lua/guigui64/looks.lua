@@ -16,7 +16,7 @@ require("lualine").setup({
     },
     sections = {
         lualine_a = { function() return string.upper(vim.api.nvim_get_mode().mode) end }, -- shorten mode
-        lualine_b = { "branch" },
+        lualine_b = { "branch", "diagnostics" },
         lualine_c = {
             {
                 "filename",

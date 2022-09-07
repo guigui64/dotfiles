@@ -17,6 +17,8 @@ require("gitsigns").setup({
     end
 })
 
+require('Comment').setup()
+
 -- Mappings
 
 local nnoremap = require("guigui64.map").nnoremap

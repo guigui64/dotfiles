@@ -4,7 +4,13 @@ local nnoremap = require("guigui64.map").nnoremap
 vim.opt.background = "dark"
 
 vim.g.guigui64_colorscheme = "tokyonight"
-vim.g.tokyonight_transparent = true
+require("tokyonight").setup({
+    transparent = true,
+    styles = {
+        sidebars = "transparent",
+        floats = "transparent"
+    }
+})
 vim.cmd("colorscheme " .. vim.g.guigui64_colorscheme)
 
 -- statusline
@@ -30,6 +36,4 @@ require("lualine").setup({
 
 -- tree
 require("nvim-tree").setup()
-vim.cmd("highlight NvimTreeNormal ctermbg=NONE guibg=NONE")
-vim.cmd("highlight NvimTreeNormalNC ctermbg=NONE guibg=NONE")
 nnoremap("<leader>x", ":NvimTreeFindFileToggle <CR>")

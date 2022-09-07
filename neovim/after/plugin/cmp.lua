@@ -34,7 +34,11 @@ cmp.setup({
         -- { name = 'snippy' }, -- For snippy users.
         { name = 'nvim_lua' },
         { name = 'tmux' },
-        { name = 'buffer' },
+        { name = 'buffer', option = {
+            get_bufnrs = function() -- complete with text from all buffers (default is current only)
+                return vim.api.nvim_list_bufs()
+            end
+        } },
     })
 })
 

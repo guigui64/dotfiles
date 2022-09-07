@@ -30,7 +30,7 @@ return require("packer").startup(function(use)
     use({
         "tpope/vim-fugitive", -- Git dashboard and commands
         "tpope/vim-surround", -- Surround stuff
-        "tpope/vim-commentary", -- Comment stuff
+        -- "tpope/vim-commentary", -- Comment stuff (replaced by comment.nvim for better integration with TS
         "tpope/vim-repeat", -- Repeat previous plugins commands
         "tpope/vim-eunuch", -- UNIX shell commands sugar
         "tpope/vim-abolish", -- :Abolish (instead of abbrev), :Substitute, etc.
@@ -89,6 +89,8 @@ return require("packer").startup(function(use)
     use("lukas-reineke/indent-blankline.nvim")
     use("lewis6991/gitsigns.nvim") -- Git signs, blame, etc.
     use("sheerun/vim-polyglot") -- detect more filetypes
+    use("numToStr/Comment.nvim") -- comment with TS support
+    use("will133/vim-dirdiff") -- diff dirs
 
     -- Automatically set up your configuration after cloning packer.nvim
     if Packer_bootstrap then

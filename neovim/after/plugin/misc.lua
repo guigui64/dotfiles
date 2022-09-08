@@ -25,7 +25,7 @@ local nnoremap = require("guigui64.map").nnoremap
 
 nnoremap("<leader>f", ":Neoformat<cr>")
 
--- Netrw
+-- Netrw (made obsolete by nvim-tree)
 
 vim.g.netrw_liststyle = 3 -- tree mode
 vim.g.netrw_banner = 0

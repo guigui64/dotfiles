@@ -19,6 +19,7 @@ require("lualine").setup({
         component_separators = "",
         section_separators = "",
         theme = vim.g.guigui64_colorscheme,
+        globalstatus = true,
     },
     sections = {
         lualine_a = { function() return string.upper(vim.api.nvim_get_mode().mode) end }, -- shorten mode
@@ -31,6 +32,9 @@ require("lualine").setup({
             }
         },
         lualine_x = { "filetype" },
+    },
+    tabline = {
+        lualine_a = { 'buffers' },
     }
 })
 

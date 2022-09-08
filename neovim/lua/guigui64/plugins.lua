@@ -37,7 +37,7 @@ return require("packer").startup(function(use)
     })
 
     -- Telescope: the fuzzy finder
-    use("nvim-telescope/telescope.nvim")
+    use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
 
     -- LSP: neovim has LSP builtin but we need plugons for installing/configuring language servers
     use {

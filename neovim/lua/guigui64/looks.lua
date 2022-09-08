@@ -35,5 +35,13 @@ require("lualine").setup({
 })
 
 -- tree
-require("nvim-tree").setup()
+require("nvim-tree").setup({
+    actions = {
+        open_file = {
+            window_picker = {
+                enable = false
+            }
+        }
+    }
+})
 nnoremap("<leader>x", ":NvimTreeFindFileToggle <CR>")

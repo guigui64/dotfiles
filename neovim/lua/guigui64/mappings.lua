@@ -20,4 +20,6 @@ noremap('+', 'ddkP')
 nnoremap('<leader>stt', ':s/    /\t/g<cr>:let @/=""<cr>')
 inoremap('{<cr>', '{<cr>}<Esc>O')
 nnoremap('<leader>bg', ':let &background = ( &background == "dark"? "light" : "dark" )<CR>')
+nnoremap('<PageDown>', ':bnext<CR>')
+nnoremap('<PageUp>', ':bprevious<CR>')
 vim.cmd 'cnoreabbrev vds vertical diffsplit'

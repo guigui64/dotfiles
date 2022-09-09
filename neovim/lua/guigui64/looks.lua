@@ -40,6 +40,7 @@ require("lualine").setup({
         lualine_a = {
             {
                 "buffers",
+                max_length = vim.o.columns, -- instead of 2/3
                 icons_enabled = false,
                 symbols = {
                     modified = "[+]"

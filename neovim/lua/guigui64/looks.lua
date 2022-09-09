@@ -9,7 +9,10 @@ require("tokyonight").setup({
     styles = {
         sidebars = "transparent",
         floats = "transparent"
-    }
+    },
+    on_colors = function(colors)
+        colors.comment = "#868eb3"
+    end
 })
 vim.cmd("colorscheme " .. vim.g.guigui64_colorscheme)
 
@@ -34,7 +37,15 @@ require("lualine").setup({
         lualine_x = { "filetype" },
     },
     tabline = {
-        lualine_a = { 'buffers' },
+        lualine_a = {
+            {
+                "buffers",
+                icons_enabled = false,
+                symbols = {
+                    modified = "[+]"
+                }
+            }
+        },
     }
 })
 

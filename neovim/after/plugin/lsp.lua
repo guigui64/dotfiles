@@ -69,7 +69,7 @@ require('lsp-setup').setup({
     },
     on_attach = function(client, _)
         for _, c in ipairs(no_format_on_save_clients) do
-            if c == client then
+            if c == client.name then
                 return -- skip auto format for those clients
             end
         end

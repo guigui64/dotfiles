@@ -3,17 +3,20 @@ local nnoremap = require("guigui64.map").nnoremap
 -- theme
 vim.opt.background = "dark"
 
-vim.g.guigui64_colorscheme = "tokyonight"
-require("tokyonight").setup({
+vim.g.guigui64_colorscheme = "gruvbox"
+require("gruvbox").setup({
     transparent = true,
-    styles = {
-        sidebars = "transparent",
-        floats = "transparent"
-    },
-    on_colors = function(colors)
-        colors.comment = "#868eb3"
-    end
 })
+-- require("tokyonight").setup({
+--     transparent = true,
+--     styles = {
+--         sidebars = "transparent",
+--         floats = "transparent"
+--     },
+--     on_colors = function(colors)
+--         colors.comment = "#868eb3"
+--     end
+-- })
 vim.cmd("colorscheme " .. vim.g.guigui64_colorscheme)
 
 -- statusline

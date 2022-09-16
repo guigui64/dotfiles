@@ -11,6 +11,7 @@ export GIT_PS1_SHOWUPSTREAM=0
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
+    alacritty) color_prompt=yes;;
 esac
 
 # timer stuff

@@ -74,7 +74,9 @@ return require("packer").startup(function(use)
     }
 
     -- Looks
-    use("folke/tokyonight.nvim")
+    -- use("folke/tokyonight.nvim")
+    -- use("rebelot/kanagawa.nvim")
+    use("~/git/gruvbox.nvim")
     use("kyazdani42/nvim-web-devicons")
     use("nvim-lualine/lualine.nvim")
     use("kyazdani42/nvim-tree.lua")

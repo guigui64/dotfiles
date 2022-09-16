@@ -54,7 +54,8 @@ export PYTHONWARNINGS="once:Unverified HTTPS request"
 [[ -f ~/.work-env ]] && source ~/.bash_profile_work
 
 # cargo (rust)
-source "$HOME/.cargo/env"
+export CARGO_INSTALL="$HOME/.cargo"
+source "$CARGO_INSTALL/env"
 
 # deno
 export DENO_INSTALL="$HOME/.deno"

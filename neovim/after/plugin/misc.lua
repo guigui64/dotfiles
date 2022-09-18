@@ -30,3 +30,7 @@ nnoremap("<leader>f", ":Neoformat<cr>")
 vim.g.netrw_liststyle = 3 -- tree mode
 vim.g.netrw_banner = 0
 vim.g.netrw_browse_split = 4 -- open in previous window
+
+-- Astro
+
+vim.g.astro_typescript = "enable"

@@ -6,7 +6,8 @@ require("nvim-treesitter.configs").setup({
         "go", "gomod",
         "c", "cpp",
         "bash",
-        "javascript", "typescript", "json",
+        "astro",
+        "javascript", "typescript", "tsx", "json",
         "lua",
         "python",
     },
@@ -24,3 +25,5 @@ require("nvim-treesitter.configs").setup({
     },
     highlight = { enable = true },
 })
+
+require("treesitter-context").setup()

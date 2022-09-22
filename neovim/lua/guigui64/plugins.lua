@@ -72,11 +72,12 @@ return require("packer").startup(function(use)
         "nvim-treesitter/nvim-treesitter",
         run = function() require("nvim-treesitter.install").update({ with_sync = true }) end,
     }
+    use("nvim-treesitter/nvim-treesitter-context")
 
     -- Looks
     -- use("folke/tokyonight.nvim")
     -- use("rebelot/kanagawa.nvim")
-    use("~/git/gruvbox.nvim")
+    use("ellisonleao/gruvbox.nvim")
     use("kyazdani42/nvim-web-devicons")
     use("nvim-lualine/lualine.nvim")
     use("kyazdani42/nvim-tree.lua")
@@ -95,6 +96,7 @@ return require("packer").startup(function(use)
     use("sheerun/vim-polyglot") -- detect more filetypes
     use("numToStr/Comment.nvim") -- comment with TS support
     use("will133/vim-dirdiff") -- diff dirs
+    use("matze/vim-move") -- move line/selection with <A-h/j/k/l>
 
     -- Automatically set up your configuration after cloning packer.nvim
     if Packer_bootstrap then

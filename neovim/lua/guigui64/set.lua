@@ -19,13 +19,15 @@ o.mouse = 'a'
 
 o.ignorecase = true
 
+o.hlsearch = false
+
 o.undofile = true
-o.backupdir = {fn.stdpath('data') .. '/backup'}
-o.directory = {fn.stdpath('data') .. '/swap'}
-o.undodir = {fn.stdpath('data') .. '/undo'}
+o.backupdir = { fn.stdpath('data') .. '/backup' }
+o.directory = { fn.stdpath('data') .. '/swap' }
+o.undodir = { fn.stdpath('data') .. '/undo' }
 
 o.list = true
-o.listchars = {tab = '→ ', trail = '·'}
+o.listchars = { tab = '→ ', trail = '·' }
 o.splitright = true
 o.splitbelow = true
 

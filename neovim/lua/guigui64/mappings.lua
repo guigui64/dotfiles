@@ -11,6 +11,8 @@ vnoremap('/', '/\\v')
 noremap('<leader><space>', ':let @/=""<cr>')
 noremap('j', 'gj') -- move up/down display lines
 noremap('k', 'gk')
+vnoremap('<', '<gv') -- keep selection when indenting
+vnoremap('>', '>gv')
 nnoremap('<leader>nn', ':set number<cr>:let &relativenumber = (&relativenumber == 1 ? 0 : 1)<cr>')
 nnoremap('<leader>ev', ':split ' .. vim.env.MYVIMRC .. '<cr>')
 nnoremap('<leader>sv', ':source ' .. vim.env.MYVIMRC .. '<cr>')

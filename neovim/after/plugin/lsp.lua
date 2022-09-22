@@ -36,6 +36,7 @@ local no_format_on_save_clients = {
     "tsserver",
     "eslint",
     "jsonls",
+    "astro",
 }
 
 require('lsp-setup').setup({
@@ -54,6 +55,7 @@ require('lsp-setup').setup({
         sumneko_lua = sumneko_config,
         pyright = {},
         -- web stuff
+        astro = {},
         cssls = {
             filetypes = { "css", "sass", "scss", "less", "jst" }
         },

@@ -68,7 +68,7 @@ window:
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  opacity: 0.9
+  opacity: 0.83
 
   # Startup Mode (changes require restart)
   #
@@ -119,7 +119,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: FuraCode Nerd Font
+    family: Fira Code
 
     # The `style` can be specified to pick a specific face.
     style: Medium
@@ -158,7 +158,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 10.0
+  size: 9.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -333,32 +333,36 @@ font:
   # regardless of their background color.
   #transparent_background_colors: false
 
-# Colors (Gruvbox - https://gist.github.com/kamek-pf/2eae4f570061a97788a8a9ca4c893797)
-# Colors (Gruvbox Material Dark Medium)
+# Colors (Gruvbox dark)
 colors:
+  # Default colors
   primary:
+    # hard contrast: background = '#1d2021'
     background: '#282828'
-    foreground: '#dfbf8e'
+    # soft contrast: background = '#32302f'
+    foreground: '#ebdbb2'
 
+  # Normal colors
   normal:
-    black:   '#665c54'
-    red:     '#ea6962'
-    green:   '#a9b665'
-    yellow:  '#e78a4e'
-    blue:    '#7daea3'
-    magenta: '#d3869b'
-    cyan:    '#89b482'
-    white:   '#dfbf8e'
+    black:   '#282828'
+    red:     '#cc241d'
+    green:   '#98971a'
+    yellow:  '#d79921'
+    blue:    '#458588'
+    magenta: '#b16286'
+    cyan:    '#689d6a'
+    white:   '#a89984'
 
+  # Bright colors
   bright:
     black:   '#928374'
-    red:     '#ea6962'
-    green:   '#a9b665'
-    yellow:  '#e3a84e'
-    blue:    '#7daea3'
+    red:     '#fb4934'
+    green:   '#b8bb26'
+    yellow:  '#fabd2f'
+    blue:    '#83a598'
     magenta: '#d3869b'
-    cyan:    '#89b482'
-    white:   '#dfbf8e'
+    cyan:    '#8ec07c'
+    white:   '#ebdbb2'
 
 # Bell
 #

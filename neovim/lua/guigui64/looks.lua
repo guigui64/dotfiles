@@ -5,7 +5,7 @@ vim.opt.background = "dark"
 
 vim.g.guigui64_colorscheme = "gruvbox"
 require("gruvbox").setup({
-    transparent = true,
+    transparent_mode = true,
 })
 -- require("tokyonight").setup({
 --     transparent = true,

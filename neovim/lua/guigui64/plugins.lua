@@ -98,6 +98,7 @@ return require("packer").startup(function(use)
     use("numToStr/Comment.nvim") -- comment with TS support
     use("will133/vim-dirdiff") -- diff dirs
     use("matze/vim-move") -- move line/selection with <A-h/j/k/l>
+    use("AndrewRadev/switch.vim") -- use gs to switch true<->false, &&<->||, etc.
 
     -- Automatically set up your configuration after cloning packer.nvim
     if Packer_bootstrap then

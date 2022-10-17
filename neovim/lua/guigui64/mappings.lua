@@ -1,6 +1,7 @@
 -- Global mappings (not using plugins)
 
 local noremap = require("guigui64.map").noremap
+local xnoremap = require("guigui64.map").xnoremap
 local nnoremap = require("guigui64.map").nnoremap
 local vnoremap = require("guigui64.map").vnoremap
 local inoremap = require("guigui64.map").inoremap
@@ -26,3 +27,5 @@ nnoremap('<leader>bg', ':let &background = ( &background == "dark"? "light" : "d
 vim.cmd 'cnoreabbrev vds vertical diffsplit'
 nnoremap("<C-PageDown>", ":bnext<CR>")
 nnoremap("<C-PageUp>", ":bprevious<CR>")
+
+xnoremap("<leader>p", "\"_dP") -- paste without messing with 'clipboard'

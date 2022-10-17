@@ -59,7 +59,8 @@ require("nvim-tree").setup({
         open_file = {
             window_picker = {
                 enable = false
-            }
+            },
+            resize_window = false
         }
     }
 })

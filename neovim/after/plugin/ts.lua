@@ -7,6 +7,7 @@ require("nvim-treesitter.configs").setup({
         "c", "cpp",
         "bash",
         "astro",
+        "html",
         "css",
         "javascript", "typescript", "tsx",
         "json",
@@ -17,6 +18,7 @@ require("nvim-treesitter.configs").setup({
         enable = true,
         filetypes = {
             'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx',
+            'astro',
             'rescript',
             'xml',
             'php',

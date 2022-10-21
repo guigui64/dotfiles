@@ -76,9 +76,10 @@ return require("packer").startup(function(use)
     use("nvim-treesitter/nvim-treesitter-context")
 
     -- Looks
-    -- use("folke/tokyonight.nvim")
+    use("folke/tokyonight.nvim")
+    use("sainnhe/gruvbox-material")
     -- use("rebelot/kanagawa.nvim")
-    use("ellisonleao/gruvbox.nvim")
+    -- use("ellisonleao/gruvbox.nvim")
     use("kyazdani42/nvim-web-devicons")
     use("nvim-lualine/lualine.nvim")
     use("kyazdani42/nvim-tree.lua")

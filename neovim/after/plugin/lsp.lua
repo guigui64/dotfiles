@@ -56,6 +56,7 @@ require('lsp-setup').setup({
         pyright = {},
         -- web stuff
         astro = {},
+        svelte = {},
         cssls = {
             filetypes = { "css", "sass", "scss", "less", "jst" }
         },

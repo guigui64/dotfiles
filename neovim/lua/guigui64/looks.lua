@@ -3,10 +3,9 @@ local nnoremap = require("guigui64.map").nnoremap
 -- theme
 vim.opt.background = "dark"
 
-vim.g.guigui64_colorscheme = "gruvbox"
-require("gruvbox").setup({
-    transparent_mode = true,
-})
+vim.g.guigui64_colorscheme = "gruvbox-material"
+vim.o.termguicolors = true
+vim.g.gruvbox_material_transparent_background = 2
 -- require("tokyonight").setup({
 --     transparent = true,
 --     styles = {

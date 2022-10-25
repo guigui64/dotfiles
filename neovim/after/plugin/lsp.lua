@@ -58,14 +58,15 @@ require('lsp-setup').setup({
         astro = {},
         svelte = {},
         cssls = {
-            filetypes = { "css", "sass", "scss", "less", "jst" }
+            filetypes = { "css", "sass", "scss", "less", "jst", "svelte" }
         },
         emmet_ls = {
-            filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "jst" }
+            filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "jst", "svelte" }
         },
         html = {
-            filetypes = { "html", "jst" }
+            filetypes = { "html", "jst", "svelte" }
         },
+        tailwindcss = {},
         tsserver = {},
         eslint = {},
         jsonls = {},

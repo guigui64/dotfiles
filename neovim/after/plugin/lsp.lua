@@ -71,13 +71,20 @@ require('lsp-setup').setup({
         eslint = {},
         jsonls = {},
     },
-    on_attach = function(client, _)
+    on_attach = function(client, bufnr)
+        -- format on save except for web stuff (see neoformat below)
         for _, c in ipairs(no_format_on_save_clients) do
             if c == client.name then
                 return -- skip auto format for those clients
             end
         end
         require('lsp-setup.utils').format_on_save(client)
+
+        -- add specific mappings
+        if "clangd" == client.name then
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', '<cmd>ClangdSwitchSourceHeader<cr>',
+                { noremap = true, silent = true })
+        end
     end
 })
 

@@ -91,7 +91,7 @@ return require("packer").startup(function(use)
 
     -- Other stuff
     use("sbdchd/neoformat")
-    use({ "NvChad/nvim-colorizer.lua", config = function() require("colorizer").setup() end }) -- colorize colors
+    use({ "NvChad/nvim-colorizer.lua", config = function() require("colorizer").setup({}) end }) -- colorize colors
     use({ "sitiom/nvim-numbertoggle", config = function() require("numbertoggle").setup() end }) -- toggle relative numbers when it matters
     use("lukas-reineke/indent-blankline.nvim")
     use("lewis6991/gitsigns.nvim") -- Git signs, blame, etc.

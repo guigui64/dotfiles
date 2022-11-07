@@ -14,6 +14,16 @@ nnoremap("<leader>th", ":lua require('telescope.builtin').help_tags()<cr>")
 -- extensions
 
 require("telescope").setup {
+    pickers = {
+        buffers = {
+            mappings = {
+                i = {
+                    ["<C-w>"] = "delete_buffer",
+                    ["<C-s>"] = "toggle_selection"
+                }
+            }
+        }
+    },
     extensions = {
         ["ui-select"] = {
             require("telescope.themes").get_dropdown {

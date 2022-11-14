@@ -26,6 +26,8 @@ return require("packer").startup(function(use)
         "nvim-lua/popup.nvim"
     })
 
+    use("guigui64/local.nvim") -- secure version of 'exrc'
+
     -- tpope good stuff
     use({
         "tpope/vim-fugitive", -- Git dashboard and commands
@@ -78,8 +80,6 @@ return require("packer").startup(function(use)
     -- Looks
     use("folke/tokyonight.nvim")
     use("sainnhe/gruvbox-material")
-    -- use("rebelot/kanagawa.nvim")
-    -- use("ellisonleao/gruvbox.nvim")
     use("kyazdani42/nvim-web-devicons")
     use("nvim-lualine/lualine.nvim")
     use("kyazdani42/nvim-tree.lua")
@@ -88,6 +88,9 @@ return require("packer").startup(function(use)
     use("guigui64/vim-monkey-c")
     use("windwp/nvim-ts-autotag") -- html/xml tags autoclose/autorename (using TS)
     use("wuelnerdotexe/vim-astro") -- astro syntax
+
+    -- Plugins dev
+    use("rafcamlet/nvim-luapad") -- Interactive neovim scratchpad for lua
 
     -- Other stuff
     use("sbdchd/neoformat")

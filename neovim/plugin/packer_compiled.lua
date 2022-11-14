@@ -139,6 +139,11 @@ _G.packer_plugins = {
     path = "/home/guillaume/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
+  ["local.nvim"] = {
+    loaded = true,
+    path = "/home/guillaume/.local/share/nvim/site/pack/packer/start/local.nvim",
+    url = "https://github.com/guigui64/local.nvim"
+  },
   ["lsp-setup.nvim"] = {
     loaded = true,
     path = "/home/guillaume/.local/share/nvim/site/pack/packer/start/lsp-setup.nvim",
@@ -179,6 +184,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/guillaume/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-luapad"] = {
+    loaded = true,
+    path = "/home/guillaume/.local/share/nvim/site/pack/packer/start/nvim-luapad",
+    url = "https://github.com/rafcamlet/nvim-luapad"
   },
   ["nvim-numbertoggle"] = {
     config = { "\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\17numbertoggle\frequire\0" },

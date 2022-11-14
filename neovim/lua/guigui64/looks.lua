@@ -36,7 +36,13 @@ require("lualine").setup({
                 path = 1, -- relative path
             }
         },
-        lualine_x = { "filetype" },
+        lualine_x = { function()
+            local sf = require("local_nvim").sourced_file
+            if sf then
+                return "[" .. sf .. "]"
+            end
+            return ""
+        end, "filetype" },
     }
 })
 

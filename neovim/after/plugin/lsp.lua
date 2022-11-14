@@ -20,6 +20,7 @@ local sumneko_config = {
             workspace = {
                 -- Make the server aware of Neovim runtime files
                 library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = false, -- stop asking me about configuring the workspace!!
             },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {
@@ -37,6 +38,7 @@ local no_format_on_save_clients = {
     "eslint",
     "jsonls",
     "astro",
+    "svelte"
 }
 
 require('lsp-setup').setup({
@@ -93,6 +95,6 @@ vim.g.neoformat_only_msg_on_error = true
 vim.cmd [[
     augroup web_format
         autocmd!
-        autocmd BufWritePre *.tsx,*.jsx,*.ts,*.js,*.json Neoformat prettier
+        autocmd BufWritePre *.tsx,*.jsx,*.ts,*.js,*.json,*.svelte,*.astro Neoformat prettier
     augroup END
 ]]

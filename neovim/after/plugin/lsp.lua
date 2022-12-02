@@ -41,6 +41,7 @@ local no_format_on_save_clients = {
     "svelte"
 }
 
+-- This also setups mason and mason-lspconfig
 require('lsp-setup').setup({
     mappings = {
         gd = 'lua require"telescope.builtin".lsp_definitions()',
@@ -69,7 +70,12 @@ require('lsp-setup').setup({
             filetypes = { "html", "jst", "svelte" }
         },
         tailwindcss = {},
-        tsserver = {},
+        tsserver = {
+            root_dir = require("lspconfig").util.root_pattern("package.json")
+        },
+        denols = {
+            root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc")
+        },
         eslint = {},
         jsonls = {},
     },

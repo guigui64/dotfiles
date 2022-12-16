@@ -1,24 +1,20 @@
 #!/bin/bash
-#
-# Open a directory in tmux (create window/session if needed)
+# Open a directory in tmux
 
-if [[ $# == 1 ]]; then
-    selected="$1"
-else
-    selected=$(fdfind --type d --maxdepth 2 . ~ | fzf)
+if [[ -z "$TMUX" ]]; then
+    echo "run in tmux!"
+    exit 1
 fi
 
+root=$(tmux display-message -p '#{session_path}')
+selected=$(fdfind --type d --maxdepth 2 . "$root" | fzf)
+
 if [[ -z "$selected" ]]; then exit 1; fi
-echo "$selected"
 
 name=$(basename "$selected")
 name=${name//./-dot-}
-echo "$name"
 
-if [[ -z "$TMUX" ]]; then # not in tmux -> create new session as well as new window
-    tmux new-session -n "$name" -c "$selected"
-else # in tmux -> only create window if it does not exist, otherwise attach
-    if ! tmux select-window -t "$name" 2> /dev/null; then
-        tmux new-window -n "$name" -c "$selected"
-    fi
+# create window if it does not exist, otherwise attach
+if ! tmux select-window -t "$name" 2> /dev/null; then
+    tmux new-window -n "$name" -c "$selected"
 fi

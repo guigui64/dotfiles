@@ -34,6 +34,7 @@ alias wg='while (true) ; do clear ; git --no-pager lga -n 16 ; echo === ; gsss ;
 alias wgl='while (true) ; do clear ; git --no-pager lga -n 15 ; sleep 5 ; done'
 alias wgs='while (true) ; do clear ; git status ; sleep 5 ; done'
 alias gka='gitk --all'
+alias grb='git branch --merged | egrep -v "(^\*|master|main|dev|develop)" | xargs git branch -d'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then

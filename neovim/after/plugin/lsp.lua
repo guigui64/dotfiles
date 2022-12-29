@@ -69,7 +69,10 @@ require('lsp-setup').setup({
         html = {
             filetypes = { "html", "jst", "svelte" }
         },
-        tailwindcss = {},
+        tailwindcss = {
+            root_dir = require("lspconfig").util.root_pattern('twind.config.ts', 'tailwind.config.js',
+                'tailwind.config.ts', 'postcss.config.js', 'postcss.config.ts', 'package.json', 'node_modules', '.git')
+        },
         tsserver = {
             root_dir = require("lspconfig").util.root_pattern("package.json")
         },

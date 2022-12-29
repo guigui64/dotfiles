@@ -29,10 +29,6 @@ cmp.setup({
         -- documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
-        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-d>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.abort(),
         -- Use <C-j/k> to jump in snippets
         ['<C-j>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -53,22 +49,6 @@ cmp.setup({
             end
         end, { "i", "s" }),
     }),
-    sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'nvim_lsp_signature_help' },
-        { name = 'vsnip' }, -- For vsnip users.
-        -- { name = 'luasnip' }, -- For luasnip users.
-        -- { name = 'ultisnips' }, -- For ultisnips users.
-        -- { name = 'snippy' }, -- For snippy users.
-        { name = 'nvim_lua' },
-        { name = 'tmux' },
-        { name = 'buffer', option = {
-            get_bufnrs = function() -- complete with text from all buffers (default is current only)
-                return vim.api.nvim_list_bufs()
-            end
-        } },
-    })
-})
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {

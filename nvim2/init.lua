@@ -74,6 +74,7 @@ require('packer').startup(function(use)
   use 'AndrewRadev/switch.vim' -- use gs to switch true<->false, &&<->||, etc.
   use 'will133/vim-dirdiff' -- diff dirs
   use 'nvim-treesitter/nvim-treesitter-context' -- stick current function/context on first line
+  use 'NvChad/nvim-colorizer.lua' -- colorize colors
 
   -- Do I need those?
   -- use 'nvim-lua/popup.nvim'
@@ -82,7 +83,6 @@ require('packer').startup(function(use)
   -- use 'rafamadriz/friendly-snippets'
   -- use 'rafcamlet/nvim-luapad' -- Interactive neovim scratchpad for lua
   -- use 'sbdchd/neoformat'
-  -- use { 'NvChad/nvim-colorizer.lua', config = function() require('colorizer').setup({}) end } -- colorize colors
   -- use { 'sitiom/nvim-numbertoggle', config = function() require('numbertoggle').setup() end } -- toggle relative numbers when it matters
   -- use 'sheerun/vim-polyglot' -- detect more filetypes
 
@@ -278,6 +278,8 @@ require('indent_blankline').setup {
   show_current_context = true,
   show_current_context_start = true,
 }
+
+require('colorizer').setup({})
 
 -- Other settings are set in after/plugin/init.lua for performances
 

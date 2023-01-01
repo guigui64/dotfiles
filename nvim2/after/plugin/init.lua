@@ -60,10 +60,10 @@ require('nvim-treesitter.configs').setup {
   ensure_installed = {
     'c', 'cpp',
     'go', 'gomod',
-    'lua',
+    'vim', 'lua',
     'python',
     'rust',
-    'html', 'css', 'astro', 'svelte', 'typescript', 'javascript', 'json',
+    'html', 'css', 'astro', 'svelte', 'typescript', 'javascript', 'json', 'tsx',
     'help',
   },
 

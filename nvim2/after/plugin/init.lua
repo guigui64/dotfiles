@@ -52,6 +52,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[S]earch [B]uffers' })
 vim.keymap.set('n', '<leader>sc', require('telescope.builtin').commands, { desc = '[S]earch [C]ommands' })
 vim.keymap.set('n', '<leader>sm', require('telescope.builtin').keymaps, { desc = '[S]earch [M]appings' })
+vim.keymap.set('n', '<leader>si', require('telescope.builtin').git_branches, { desc = '[S]witch G[i]t Branch' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -121,15 +122,15 @@ require('nvim-treesitter.configs').setup {
         ['<leader>A'] = '@parameter.inner',
       },
     },
-    autotag = { -- from windwp/nvim-ts-autotag plugin
-      enable = true,
-      filetypes = {
-        'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'astro',
-        'rescript', 'glimmer', 'handlebars', 'hbs', 'jst', 'xml',
-        'php',
-        'markdown',
-      }
-    },
+  },
+  autotag = { -- from windwp/nvim-ts-autotag plugin
+    enable = true,
+    filetypes = {
+      'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'astro',
+      'rescript', 'glimmer', 'handlebars', 'hbs', 'jst', 'xml',
+      'php',
+      'markdown',
+    }
   },
 }
 require("treesitter-context").setup()

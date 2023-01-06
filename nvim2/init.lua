@@ -57,6 +57,7 @@ require('packer').startup(function(use)
   -- Git related plugins
   use 'tpope/vim-fugitive'
   use 'lewis6991/gitsigns.nvim'
+  use 'rbong/vim-flog'
 
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
   use 'sainnhe/gruvbox-material' -- Gruvbox with TS
@@ -145,6 +146,9 @@ vim.o.mouse = 'a'
 -- Enable break indent
 vim.o.breakindent = true
 
+-- Change default tabstop from 8 to 4 (even though sleuth will automatically detect the right value in most cases)
+vim.o.tabstop = 4
+
 -- Save undo history
 vim.o.undofile = true
 vim.fn.system { 'mkdir', '-p', vim.fn.stdpath('data') .. '/backup' }
@@ -215,6 +219,7 @@ vim.keymap.set('n', "<C-PageUp>", ":bprevious<CR>", {})
 vim.keymap.set('n', "<C-d>", "<C-d>zz", {}) -- center after C-d/u
 vim.keymap.set('n', "<C-u>", "<C-u>zz", {})
 vim.keymap.set('x', "<leader>p", "\"_dP", {}) -- paste without messing with 'clipboard'
+vim.keymap.set('n', "<leader>gx", ":vertical :Flogsplit -all<CR>", {}) -- paste without messing with 'clipboard'
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`

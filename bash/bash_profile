@@ -48,7 +48,7 @@ tabs -4
 export LESS=Rx4
 
 # Python warnings
-export PYTHONWARNINGS="once:Unverified HTTPS request"
+export PYTHONWARNINGS="once:Unverified HTTPS request,ignore::DeprecationWarning"
 
 # Detect work environment and source associated profile
 [[ -f ~/.work-env ]] && source ~/.bash_profile_work

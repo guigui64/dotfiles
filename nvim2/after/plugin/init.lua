@@ -208,7 +208,11 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
-  gopls = {},
+  gopls = {
+    settings = {
+      gofumpt = true
+    }
+  },
   clangd = {},
   bashls = {},
   pyright = {},
@@ -228,7 +232,8 @@ local servers = {
       'tailwind.config.ts', 'postcss.config.js', 'postcss.config.ts', 'package.json', 'node_modules', '.git')
   },
   tsserver = {
-    root_dir = require("lspconfig").util.root_pattern("package.json")
+    root_dir = require("lspconfig").util.root_pattern("package.json", "tsconfig.json"),
+    single_file_support = false,
   },
   denols = {
     root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc")
@@ -236,9 +241,11 @@ local servers = {
   eslint = {},
   jsonls = {},
   sumneko_lua = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
+    settings = {
+      Lua = {
+        workspace = { checkThirdParty = false },
+        telemetry = { enable = false },
+      },
     },
   },
 }
@@ -262,14 +269,10 @@ mason_lspconfig.setup {
 
 mason_lspconfig.setup_handlers {
   function(server_name)
-    local root_dir = servers[server_name]['root_dir']
-    servers[server_name]['root_dir'] = nil
-    require('lspconfig')[server_name].setup {
+    require('lspconfig')[server_name].setup(vim.tbl_extend("force", {
       capabilities = capabilities,
       on_attach = on_attach,
-      settings = servers[server_name],
-      root_dir = root_dir,
-    }
+    }, servers[server_name]))
   end,
 }
 

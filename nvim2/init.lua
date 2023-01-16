@@ -62,8 +62,8 @@ require('packer').startup(function(use)
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
   use 'sainnhe/gruvbox-material' -- Gruvbox with TS
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
-  use 'kyazdani42/nvim-web-devicons' -- Fancy icons
-  use 'kyazdani42/nvim-tree.lua' -- Files tree
+  use 'nvim-tree/nvim-web-devicons' -- Fancy icons
+  use 'nvim-tree/nvim-tree.lua' -- Files tree
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
@@ -271,6 +271,14 @@ require("nvim-tree").setup({
         enable = false
       },
       resize_window = false
+    }
+  },
+  view = {
+    adaptive_size = true,
+  },
+  renderer = {
+    icons = {
+      git_placement = "after"
     }
   }
 })

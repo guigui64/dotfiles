@@ -1,0 +1,59 @@
+# vim: filetype=bash
+
+alias :q='exit'
+alias vim='nvim'
+alias vimdiff='nvim -d'
+alias vimrc='nvim ~/.config/nvim/'
+alias df='df -Th --total'
+alias du='du -h'
+alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
+alias mkdir='mkdir -pv'
+alias lessn='less -N'
+alias asl='awk '\''{ print $NF }'\'' | sed '\''s/*//'\'' | xargs less'
+alias pyve='python -mvenv --system-site-packages venv'
+alias pyva='source venv/bin/activate'
+alias pyvd='deactivate'
+alias xo='xdg-open'
+alias Gogh='bash -c "$(wget -qO- https://git.io/vQgMr)"'
+alias aoc='cd ~/git/advent-of-code/2021'
+alias fd='fdfind'
+alias bat='batcat'
+
+# Clipboard
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
+# GIT
+alias gg='gitg &'
+alias gs='git status'
+alias gss='git status -s'
+alias gsss='git status -s | grep -v smp2 | grep -v roject > /tmp/wg ; head -n 25 /tmp/wg ; echo "Nb modified : "$(cat /tmp/wg | wc -l)" ("$(git status -s | wc -l)")"'
+alias gl='git lga'
+alias gd='git diff'
+alias gototop='cd `git toplvl`'
+alias wg='while (true) ; do clear ; git --no-pager lga -n 16 ; echo === ; gsss ; sleep 5 ; done'
+alias wgl='while (true) ; do clear ; git --no-pager lga -n 15 ; sleep 5 ; done'
+alias wgs='while (true) ; do clear ; git status ; sleep 5 ; done'
+alias gka='gitk --all'
+alias grb='git branch --merged | egrep -v "(^\*|master|main|dev|develop)" | xargs git branch -d'
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    if [ -r ~/.dircolors ]; then
+        eval "$(dircolors -b ~/.dircolors)"
+    else
+        eval "$(dircolors -b)"
+    fi
+    alias ls='ls --color=auto --group-directories-first'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+else
+    alias ls='ls --group-directories-first'
+fi
+
+# some more ls aliases
+alias ll='ls -halF'
+alias la='ls -A'
+alias l='ls -CF'

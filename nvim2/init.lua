@@ -76,6 +76,8 @@ require('packer').startup(function(use)
   use 'will133/vim-dirdiff' -- diff dirs
   use 'nvim-treesitter/nvim-treesitter-context' -- stick current function/context on first line
   use 'NvChad/nvim-colorizer.lua' -- colorize colors
+  use 'Exafunction/codeium.vim' -- Copilot alternative
+  use { 'akinsho/toggleterm.nvim', tag = '*' } -- Terminal
 
   -- Do I need those?
   -- use 'nvim-lua/popup.nvim'
@@ -219,7 +221,7 @@ vim.keymap.set('n', "<C-PageUp>", ":bprevious<CR>", {})
 vim.keymap.set('n', "<C-d>", "<C-d>zz", {}) -- center after C-d/u
 vim.keymap.set('n', "<C-u>", "<C-u>zz", {})
 vim.keymap.set('x', "<leader>p", "\"_dP", {}) -- paste without messing with 'clipboard'
-vim.keymap.set('n', "<leader>gx", ":vertical :Flogsplit -all<CR>", {}) -- paste without messing with 'clipboard'
+vim.keymap.set('n', "<leader>gx", ":vertical :Flogsplit -all -date=short<CR>", {}) -- paste without messing with 'clipboard'
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`

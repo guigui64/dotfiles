@@ -337,5 +337,14 @@ cmp.setup {
   },
 }
 
+-- ToggleTerm
+require('toggleterm').setup {
+  size = 18
+}
+
+vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], { desc = 'Escape: terminal mode to normal mode' })
+vim.keymap.set('n', '<leader>;', ':ToggleTerm<CR>', { desc = 'Toggle terminal' })
+vim.keymap.set('t', '<leader>;', [[<C-\><C-n>:ToggleTerm<CR>]], { desc = 'Toggle terminal' })
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

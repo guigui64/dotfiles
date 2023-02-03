@@ -78,6 +78,8 @@ require('packer').startup(function(use)
   use 'NvChad/nvim-colorizer.lua' -- colorize colors
   use 'Exafunction/codeium.vim' -- Copilot alternative
   use { 'akinsho/toggleterm.nvim', tag = '*' } -- Terminal
+  use({ 'toppair/peek.nvim', run = 'deno task --quiet build:fast' }) -- Markdown preview (not working?)
+  use 'davidgranstrom/nvim-markdown-preview' -- Markdown preview
 
   -- Do I need those?
   -- use 'nvim-lua/popup.nvim'
@@ -223,6 +225,12 @@ vim.keymap.set('n', "<C-u>", "<C-u>zz", {})
 vim.keymap.set('x', "<leader>p", "\"_dP", {}) -- paste without messing with 'clipboard'
 vim.keymap.set('n', "<leader>gx", ":vertical :Flogsplit -all -date=short<CR>", {}) -- paste without messing with 'clipboard'
 
+vim.api.nvim_create_user_command('NNN', 'normal 0f:f"ci"999.0.0<esc>', {})
+vim.api.nvim_create_user_command('CV', 'normal 0f:f"ci"', {})
+
+vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
+vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -243,7 +251,7 @@ require('lualine').setup {
     component_separators = "",
     section_separators = "",
     theme = vim.g.guigui64_colorscheme,
-    globalstatus = true,
+    globalstatus = false,
   },
   sections = {
     lualine_a = { function() return string.upper(vim.api.nvim_get_mode().mode) end }, -- shorten mode

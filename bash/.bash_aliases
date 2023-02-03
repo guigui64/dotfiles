@@ -4,6 +4,7 @@ alias :q='exit'
 alias vim='nvim'
 alias vimdiff='nvim -d'
 alias vimrc='nvim ~/.config/nvim/'
+alias vv='nvim -c "Telescope find_files"'
 alias df='df -Th --total'
 alias du='du -h'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"

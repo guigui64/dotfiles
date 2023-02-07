@@ -193,13 +193,15 @@ local on_attach = function(client, bufnr)
 
   -- autoformat on save
   local autofmt_group = vim.api.nvim_create_augroup('lsp_autofmt', { clear = true })
+  vim.api.nvim_clear_autocmds({ group = autofmt_group, buffer = bufnr })
   vim.api.nvim_create_autocmd('BufWritePre', {
+    group = autofmt_group,
+    buffer = bufnr,
     callback = function()
       if vim.g.lsp_autofmt then
         vim.lsp.buf.format()
       end
     end,
-    group = autofmt_group,
   })
 
   -- Specific clients settings
@@ -284,6 +286,16 @@ mason_lspconfig.setup_handlers {
 
 -- Turn on lsp status information
 require('fidget').setup()
+
+-- Pretty list for diagnostics
+require('trouble').setup()
+vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
+
+-- null-ls
+local null_ls = require('null-ls')
+null_ls.setup({
+  sources = { null_ls.builtins.formatting.prettierd }
+})
 
 -- nvim-cmp setup
 local cmp = require 'cmp'

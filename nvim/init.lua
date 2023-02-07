@@ -18,11 +18,11 @@ require('packer').startup(function(use)
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
 
-      -- Useful status updates for LSP
-      'j-hui/fidget.nvim',
+      'jose-elias-alvarez/null-ls.nvim', -- for non-LSP sources (formatting with prettier for instance)
 
-      -- Additional lua configuration, makes nvim stuff amazing
-      'folke/neodev.nvim',
+      'j-hui/fidget.nvim', -- Useful status updates for LSP
+      'folke/neodev.nvim', -- Additional lua configuration, makes nvim stuff amazing
+      'folke/trouble.nvim', -- Pretty list for diagnostics
     },
   }
 

@@ -60,3 +60,8 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
 
 # bat (cat clone)
 export BAT_THEME="Solarized (dark)"
+
+# pnpm
+export PNPM_HOME="/home/comte/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end

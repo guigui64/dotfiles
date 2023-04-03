@@ -24,6 +24,22 @@ return {
       denols = {
         root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
       },
+      jdtls = {
+        root_dir = require("lspconfig").util.root_pattern(".project"),
+        settings = {
+          java = {
+            configuration = {
+              runtimes = {
+                {
+                  name = "JavaSE-1.8",
+                  path = "/usr/java/jdk1.8.0_25",
+                  default = true,
+                },
+              },
+            },
+          },
+        },
+      },
     },
     setup = {
       eslint = function()

@@ -24,6 +24,7 @@ return {
       denols = {
         root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
       },
+      gopls = {},
       jdtls = {
         root_dir = require("lspconfig").util.root_pattern(".project"),
         settings = {

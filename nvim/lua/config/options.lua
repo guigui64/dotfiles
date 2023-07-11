@@ -14,3 +14,4 @@ else
 end
 
 opt.wrap = true
+opt.mousemodel = "extend"

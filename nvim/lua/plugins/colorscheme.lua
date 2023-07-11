@@ -1,8 +1,8 @@
 return {
-  -- add gruvbox
-  "sainnhe/gruvbox-material",
+  { "sainnhe/gruvbox-material" },
+  { "catppuccin/nvim", name = "catppuccin" },
 
-  -- Configure LazyVim to load gruvbox
+  -- Configure LazyVim to load colorscheme
   {
     "LazyVim/LazyVim",
     opts = {

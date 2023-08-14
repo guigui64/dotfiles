@@ -10,8 +10,8 @@ export GIT_PS1_SHOWUPSTREAM=0
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-    alacritty) color_prompt=yes;;
+xterm-color | *-256color) color_prompt=yes ;;
+alacritty) color_prompt=yes ;;
 esac
 
 # timer stuff
@@ -20,7 +20,7 @@ function timer_start {
 }
 function timer_stop {
 	timer_show=$((SECONDS - timer))
-	if (( timer_show >= 5 )); then
+	if ((timer_show >= 5)); then
 		timer_show=" • took "$(gotimelaps ${timer_show}s)
 	else
 		timer_show=""

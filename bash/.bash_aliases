@@ -21,6 +21,7 @@ alias Gogh='bash -c "$(wget -qO- https://git.io/vQgMr)"'
 alias aoc='cd ~/git/advent-of-code/2021'
 alias fd='fdfind'
 alias bat='batcat'
+alias inkscape='flatpak run org.inkscape.Inkscape'
 
 # Clipboard
 alias pbcopy='xclip -selection clipboard'

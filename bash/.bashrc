@@ -104,9 +104,8 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
 # bat (cat clone)
 export BAT_THEME="gruvbox-dark"
 
-# Go (now handled by update-golang.sh and /etc/profile.d/golang_path.sh)
-# export GOPATH="$HOME/go"
-# export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+# Go (now handled by update-golang.sh and ~/.profile)
+# To update: run DESTINATION=~/.local/golang PROFILED=~/.profile ~/git/update-golang.sh
 
 # cargo (rust)
 # export CARGO_INSTALL="$HOME/.cargo"
@@ -121,10 +120,9 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # pnpm
-export PNPM_HOME="/home/guillaume/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
-# pnpm end
 
 # Fly.io
-export FLYCTL_INSTALL="/home/guillaume/.fly"
+export FLYCTL_INSTALL="$HOME/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"

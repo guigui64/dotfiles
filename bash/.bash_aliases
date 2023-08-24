@@ -61,3 +61,5 @@ fi
 alias ll='ls -halF'
 alias la='ls -A'
 alias l='ls -CF'
+
+source ~/git/dotfiles/bash/old/aliases_work

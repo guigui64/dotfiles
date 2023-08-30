@@ -11,7 +11,6 @@ import (
 var defaultUser string = "guigui64"
 
 const github string = "https://github.com"
-const simforge string = "git@simforge.tls.fr.astrium.corp"
 
 func main() {
 	args := os.Args[1:]
@@ -25,11 +24,7 @@ func main() {
 		if len(paths) == 1 {
 			url = strings.Join([]string{github, defaultUser, paths[0]}, "/")
 		} else if len(paths) == 2 {
-			if paths[0] == "simtg" || paths[0] == "tools" {
-				url = simforge + ":" + args[0]
-			} else {
-				url = strings.Join([]string{github, paths[0], paths[1]}, "/")
-			}
+			url = strings.Join([]string{github, paths[0], paths[1]}, "/")
 		} else {
 			url = args[0]
 		}

@@ -21,7 +21,8 @@ alias Gogh='bash -c "$(wget -qO- https://git.io/vQgMr)"'
 alias aoc='cd ~/git/advent-of-code/2021'
 alias fd='fdfind'
 alias bat='batcat'
-alias inkscape='flatpak run org.inkscape.Inkscape'
+alias gopi='ssh -X pi@pi'
+alias pn='pnpm'
 
 # Clipboard
 alias pbcopy='xclip -selection clipboard'
@@ -61,5 +62,3 @@ fi
 alias ll='ls -halF'
 alias la='ls -A'
 alias l='ls -CF'
-
-source ~/git/dotfiles/bash/old/aliases_work

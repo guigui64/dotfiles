@@ -7,6 +7,7 @@ export DOTFILES_ROOT="$HOME/git/dotfiles"
 source "${DOTFILES_ROOT}/git/git-prompt.sh"
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUPSTREAM=0
+export GIT_PS1_STATESEPARATOR=""
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -21,7 +22,7 @@ function timer_start {
 function timer_stop {
 	timer_show=$((SECONDS - timer))
 	if ((timer_show >= 5)); then
-		timer_show=" • took "$(gotimelaps ${timer_show}s)
+		timer_show=$(gotimelaps ${timer_show}s)" "
 	else
 		timer_show=""
 	fi
@@ -36,8 +37,9 @@ fi
 
 # Prompt
 if [ "$color_prompt" = yes ]; then
-	PS1='${debian_chroot:+($debian_chroot)}\[\e[1;33m\]\u@\h\[\e[34m\] • \w\[\e[36m\]$(__git_ps1 " • %s")\[\e[35m\]$timer_show\n\[\e[$([ "$?" == "0" ] && printf "32" || printf "31")m\]$([ \j -gt 0 ] && echo "[\j] ")\$ \[\e[0m\]'
+	# PS1='${debian_chroot:+($debian_chroot)}\[\e[1;33m\]\u@\h\[\e[34m\] • \w\[\e[36m\]$(__git_ps1 " • %s")\[\e[35m\]$timer_show\n\[\e[$([ "$?" == "0" ] && printf "32" || printf "31")m\]$([ \j -gt 0 ] && echo "[\j] ")\$ \[\e[0m\]'
+	PS1='${debian_chroot:+($debian_chroot)}\[\e[1;36m\]$(__git_ps1 "%s ")\[\e[35m\]$timer_show\[\e[34m\]\w \[\e[$([ "$?" == "0" ] && printf "32" || printf "31")m\]$([ \j -gt 0 ] && echo "[\j] ")\$ \[\e[0m\]'
 else
-	PS1='${debian_chroot:+($debian_chroot)}\u@\h \w$(__git_ps1)${timer_show}\n\$ '
+	PS1='${debian_chroot:+($debian_chroot)}$(__git_ps1 "%s ")${timer_show}\w \$ '
 fi
 unset color_prompt

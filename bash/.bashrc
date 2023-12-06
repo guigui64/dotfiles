@@ -126,3 +126,4 @@ export PATH="$PNPM_HOME:$PATH"
 # Fly.io
 export FLYCTL_INSTALL="$HOME/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
